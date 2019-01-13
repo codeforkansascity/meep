@@ -32,7 +32,7 @@ class Project(db.Model):
     takeaway_fact = db.Column(db.String(300))
     image_url = db.Column(db.String(300))
     ix_submitted_by = db.Column(db.Integer, db.ForeignKey('user.id'))
-    ix_approved_by = db.Column(db.Integer, db.ForeignKey('admin.id'))
+    ix_approved_by = db.Column(db.Integer, db.ForeignKey('user.id'))
     submission_datetime = db.Column(db.DateTime)
     approval_datetime = db.Column(db.DateTime)
     emmissions_statistics = db.relationship(
