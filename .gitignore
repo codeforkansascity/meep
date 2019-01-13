@@ -1,2 +1,4 @@
 venv
 development_notes
+__pycache__
+app/__pycache__

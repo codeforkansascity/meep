@@ -16,7 +16,7 @@ class User(db.Model):
 class Admin(User):
     projects_approved = db.relationship(
         'Project',
-        'backref'='approved_by',
+        backref='approved_by',
         lazy='dynamic'
     )
 
@@ -35,13 +35,11 @@ class Project(db.Model):
     ix_approved_by = db.Column(db.Integer, db.ForeignKey('admin.id'))
     submission_datetime = db.Column(db.DateTime)
     approval_datetime = db.Column(db.DateTime)
-    emmissions_statistics = db.Relationship(
+    emmissions_statistics = db.relationship(
         'EmmissionsStatistic',
         backref='project_id',
         lazy='dynamic'
     )
-    def __repr_(self):
-        return '
 
 class Building(Project):
     square_footage = db.Column(db.Float)
@@ -51,6 +49,7 @@ class Vehicle(Project):
     fleet_name = db.Column(db.String(120))
 
 class Infrastructure(Project):
+    pass
 
 class EmmissionsStatistic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
