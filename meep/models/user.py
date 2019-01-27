@@ -1,5 +1,7 @@
-from meep.models import db
+from flask import jsonify
 
+from meep.models import db
+from meep.models.project import Project
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -7,4 +9,4 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f'<User {self.username}>'    
