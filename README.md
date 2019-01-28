@@ -13,6 +13,9 @@ The aim of this project is to create a central database that consolidates the ME
 
 * Database: Mysql, Postgres, or SQLserver. Still TBD.
 * Flask API
+  * Flask Restful
+  * Flask SQLAlchemy
+  * Flask Migrate
 * React frontend?
 
 
