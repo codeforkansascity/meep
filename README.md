@@ -11,13 +11,14 @@ The aim of this project is to create a central database that consolidates the ME
 
 ### Technology Stack (Still subject to change)
 
-* Database: Mysql, Postgres, or SQLserver. Still TBD.
+* Database: Postgres
 * Flask API
   * Flask Restful
   * Flask SQLAlchemy
   * Flask Migrate
 * React frontend?
 
+We are looking for developers who have experience with GIS or mapping apis. 
 
 ## How to Contribute
 
