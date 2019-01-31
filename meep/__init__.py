@@ -10,14 +10,15 @@ def create_app(config=DefaultConfig()):
 
     # initialize database and migrations
     from meep.models import db, migrate
-    import meep.models.project
-    import meep.models.user
+    from meep.models import Address, AreaOfEffect
+    from meep.models import Coordinate, FuelType
+    from meep.models import Owner, Line, Project
+    from meep.models import Radius, Site
     db.init_app(app)
     migrate.init_app(app, db)
 
     # register blueprints
-    from meep.resources import project, user
-    app.register_blueprint(user.user)
+    from meep.resources import project
     app.register_blueprint(project.project)
 
     return app

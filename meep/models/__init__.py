@@ -13,6 +13,8 @@ class Address(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('owner.id'))
     site_id = db.Column(db.Integer, db.ForeignKey('site.id'))
     site = db.relationship("Site", back_populates="address")
+    coordinate = db.relationship("Coordinate", uselist=False,
+                                 backref="address")
 
     def __repr__(self):
         return f'Address(address={self.address}, zip={self.zip})'
@@ -21,15 +23,24 @@ class Address(db.Model):
 class AreaOfEffect(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     site_id = db.Column(db.Integer, db.ForeignKey('site.id'),
-    nullable=False)
-    fuel_id = db.Column(db.Integer, db.ForeignKey('fuel.id'),
-    nullable=False)
+                        nullable=False)
+    fuel_type_id = db.Column(db.Integer, db.ForeignKey('fuel_type.id'),
+                             nullable=False)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
+    address = db.relationship("Address",
+                              backref=db.backref("area_of_effect",
+                                                 uselist=False))
+    fuel_type_id = db.Column(db.Integer, db.ForeignKey('fuel_type.id'))
+    fuel_type = db.relationship("FuelType",
+                                backref=db.backref("area_of_effect",
+                                                   uselist=False))
 
 
 class Coordinate(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     lat = db.Column(db.Float)
     long = db.Column(db.Float)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
 
 
 class FuelType(db.Model):
@@ -42,7 +53,7 @@ class Owner(db.Model):
     name = db.Column(db.String(30), nullable=False)
     summary = db.Column(db.String(1000))
     addresses = db.relationship('Address', backref='owner', lazy=True)
-    project_owner = db.relationship('Project', secondary=project_owner,
+    project_owner = db.relationship('Project', secondary='project_owner',
         lazy='subquery', backref=db.backref('pages', lazy=True)
     )
 
@@ -52,10 +63,15 @@ class Owner(db.Model):
 
 class Line(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    aoe_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'),
+    area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'),
                        nullable=False)
+    area_of_effect = db.relationship(
+        'AreaOfEffect',
+        backref=db.backref('line', uselist=False)
+    )
     end_location_id = db.Column(db.Integer, db.ForeignKey('address.id'),
                                 nullable=False)
+    end_location = db.relationship('Address', backref=db.backref('line', uselist=False))
 
 
 class Project(db.Model):
@@ -73,9 +89,14 @@ class Project(db.Model):
 
 class Radius(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    aoe_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'),
+    area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'),
                        nullable=False)
+    area_of_effect = db.relationship(
+        'AreaOfEffect',
+        backref=db.backref("radius", uselist=False)
+    )
     radius = db.Column(db.Float)
+
 
 
 class Site(db.Model):
@@ -86,8 +107,10 @@ class Site(db.Model):
     GGE_reduced = db.Column(db.Float)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     address = db.relationship("Address", uselist=False, back_populates="Site")
+    areas_of_effect = db.relationship("AreaOfEffect", backref='site',
+        lazy=True)
 
 project_owner = db.Table('project_owner',
-    db.Column('project_id', db.Integer, db.ForeignKey='project.id', primary_key=True)
-    db.Column('owner_id', db.Integer, db.ForeignKey='owner.id', primary_key=True)
+    db.Column('project_id', db.Integer, db.ForeignKey('project.id'), primary_key=True),
+    db.Column('owner_id', db.Integer, db.ForeignKey('owner.id'), primary_key=True)
 )
