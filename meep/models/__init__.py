@@ -98,7 +98,6 @@ class Radius(db.Model):
     radius = db.Column(db.Float)
 
 
-
 class Site(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'),
@@ -106,7 +105,7 @@ class Site(db.Model):
     GHG_reduced = db.Column(db.Float)
     GGE_reduced = db.Column(db.Float)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-    address = db.relationship("Address", uselist=False, back_populates="Site")
+    address = db.relationship("Address", uselist=False, back_populates="site")
     areas_of_effect = db.relationship("AreaOfEffect", backref='site',
         lazy=True)
 
