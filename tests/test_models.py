@@ -3,7 +3,6 @@ from datetime import date, timedelta
 
 import pytest
 
-
 from meep.models import db
 from meep.models import Address, AreaOfEffect, Coordinate, FuelType, Owner
 from meep.models import Line, Project, Radius, Site
@@ -17,7 +16,8 @@ from config import TestingConfig
 @pytest.fixture(scope='module')
 def new_address():
     address = Address(
-        id=234243,
+        id=87,
+        address="1882 133 Pl.",
         city="Overland Park",
         state="KS",
         zip=66209
@@ -26,6 +26,9 @@ def new_address():
 
 
 def test_new_address(new_address):
+    assert new_address.id == 87
+    print(new_address.id)
+    assert new_address.address == "1882 133 Pl."
     assert new_address.city == "Overland Park"
     assert new_address.state == "KS"
     assert new_address.zip == 66209
@@ -99,12 +102,12 @@ def test_new_line(new_line):
 @pytest.fixture(scope='module')
 def new_project():
     return Project(
-        id = 42,
-        name = "Clean kitchen",
-        start_date = date(1992, 12, 24),
-        duration = timedelta(365),
-        project_type = "Classified",
-        summary = "Go clean the kitchen. It is a mess."
+        id=42,
+        name="Clean kitchen",
+        start_date=date(1992, 12, 24),
+        duration=timedelta(365),
+        project_type="Classified",
+        summary="Go clean the kitchen. It is a mess."
     )
 
 
@@ -144,28 +147,105 @@ def test_new_site(new_site):
     assert new_site.GGE_reduced == 34.3
 
 
-
-# @pytest.fixture(scope='module')
-# def new_owner():
-#     owner = Owner(
-#         name="Howie Mandell",
-#         summary="American actor and talk show host"
-#     )
-#     return owner
+# test relationships
 
 
-# def test_new_owner(new_owner):
-#         assert new_owner.name == "Howie Mandell"
-#         assert new_owner.summary == "American actor and talk show host"
+def test_owner_addresses():
+    owner = Owner(name='Ted Bundy', summary='American serial killer')
+    address_1 = Address(
+        address='84 Pennings Lane',
+        city='Olathe',
+        state='KS',
+        zip=66211,
+        owner=owner
+    )
+    assert owner.addresses.pop() == address_1
+    address_2 = Address(
+        address='123 88th Street',
+        city='Kansas City',
+        state='MO',
+        zip=12345
+    )
+    owner.addresses.append(address_2)
+    assert owner.addresses.pop() == address_2
+
+def test_owner_projects():
+    owner_1 = Owner(name='Zapp Brannigan', summary='Starship captain. Notorious womanizer.')
+    owner_2 = Owner(name='Prof. Farnsworth', summary='Proper genius')
+    project_1 = Project(
+        name='Go grocery shopping'
+    )
+    project_2 = Project(
+        name='Clean out car'
+    )
+    owner_1.projects += [project_1, project_2]
+    owner_2.projects.append(project_1)
+    assert project_1 in owner_1.projects
+    assert project_2 in owner_1.projects
+    assert owner_1 in project_1.owners
+    assert owner_2 in project_1.owners
+
+def test_project_sites():
+    project = Project(name="meep")
+    site_1 = Site()
+    project.sites.append(site_1)
+    site_2 = Site(project=project)
+    assert site_1 in project.sites
+    assert site_2 in project.sites
+
+def test_site_aoes():
+    site = Site()
+    aoe_1 = AreaOfEffect()
+    site.areas_of_effect.append(aoe_1)
+    aoe_2 = AreaOfEffect(site=site)
+    assert aoe_1 in site.areas_of_effect
+    assert aoe_2 in site.areas_of_effect
 
 
-# @pytest.fixture(scope='module')
-# def test_client():
-#     app = create_app(TestingConfig)
-#     client = app.test_client()
-#     context = app.app_context()
-#     context.push()
-#
-#     yield client
-#
-#     context.pop()
+def test_aoe_radius():
+    radius = Radius(radius=3.14)
+    aoe = AreaOfEffect(radius=radius)
+    assert aoe.radius == radius
+    assert aoe.radius.radius == 3.14
+    assert radius.area_of_effect == aoe
+
+
+def test_aoe_line():
+    line = Line()
+    aoe = AreaOfEffect(line=line)
+    assert aoe.line == line
+    with pytest.raises(AttributeError)
+        assert line.area_of_effect == aoe
+
+
+def test_line_end_address():
+    address = Address()
+    line = Line(end_location=address)
+    assert line.end_location == address
+    with pytest.raises(AttributeError):
+        assert address.line == line
+
+
+def test_aoe_fuel_type():
+    fuel = FuelType(fuel="ethanol")
+    aoe_1 = AreaOfEffect(fuel_type=fuel)
+    aoe_2 = AreaOfEffect(fuel_type=fuel)
+    assert aoe_1.fuel_type is fuel
+    assert aoe_2.fuel_type is fuel
+    assert aoe_1 in fuel.areas_of_effect
+    assert aoe_2 in fuel.areas_of_effect
+
+
+def test_aoe_address():
+    address = Address()
+    aoe = AreaOfEffect(address=address)
+    assert aoe.address is address
+    with pytest.raises(AttributeError):
+        assert address.area_of_effect is aoe
+
+
+def test_address_coordinates():
+    c = Coordinate(lat=12.2, long=-42.3)
+    a = Address(coordinate=c)
+    assert c.address is a
+    assert a.coordinate is c
