@@ -28,15 +28,15 @@ class Address(db.Model):
         return f'Address(address={self.address}, zip={self.zip})'
 
 
-class ect(db.Model):
+class AreaOfEffect(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     site_id = db.Column(db.Integer, db.ForeignKey('site.id'),
                         nullable=False)
     address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
     address = db.relationship("Address", uselist=False)
     fuel_type_id = db.Column(db.Integer, db.ForeignKey('fuel_type.id'))
-    radius = db.relationship('Radius', uselist=False, back_populates='area_of_effect')
-    line = db.relationship('Line', uselist=False, back_populates='area_of_effect')
+    radius = db.relationship('Radius', uselist=False)
+    line = db.relationship('Line', uselist=False)
 
 
 class Coordinate(db.Model):
@@ -49,7 +49,7 @@ class Coordinate(db.Model):
 class FuelType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fuel = db.Column(db.String(50))
-    areas_of_effect = db.relationship('ect', backref='fuel_type')
+    areas_of_effect = db.relationship('AreaOfEffect', backref='fuel_type')
 
 
 class Owner(db.Model):
@@ -68,10 +68,6 @@ class Owner(db.Model):
 class Line(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'))
-    area_of_effect = db.relationship(
-        'ect',
-        back_populates='line'
-    )
     end_location_id = db.Column(db.Integer, db.ForeignKey('address.id'),
                                 nullable=False)
     end_location = db.relationship('Address', uselist=False)
@@ -93,10 +89,6 @@ class Project(db.Model):
 class Radius(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'))
-    area_of_effect = db.relationship(
-        'ect',
-        back_populates="radius"
-    )
     radius = db.Column(db.Float)
 
 

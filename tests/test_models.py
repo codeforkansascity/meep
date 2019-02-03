@@ -94,7 +94,6 @@ def new_line():
         id=23
     )
 
-
 def test_new_line(new_line):
     assert new_line.id == 23
 
@@ -151,33 +150,26 @@ def test_new_site(new_site):
 
 
 def test_owner_addresses():
-    owner = Owner(name='Ted Bundy', summary='American serial killer')
-    address_1 = Address(
-        address='84 Pennings Lane',
-        city='Olathe',
-        state='KS',
-        zip=66211,
-        owner=owner
-    )
-    assert owner.addresses.pop() == address_1
-    address_2 = Address(
-        address='123 88th Street',
-        city='Kansas City',
-        state='MO',
-        zip=12345
-    )
+    '''
+    one owner to many addresses, one address to one owner
+    '''
+    owner = Owner()
+    address_1 = Address(owner=owner)
+    address_2 = Address()
     owner.addresses.append(address_2)
-    assert owner.addresses.pop() == address_2
+    assert address_1 in owner.addresses
+    assert address_2 in owner.addresses
+    assert address_1.owner is owner
+
 
 def test_owner_projects():
-    owner_1 = Owner(name='Zapp Brannigan', summary='Starship captain. Notorious womanizer.')
-    owner_2 = Owner(name='Prof. Farnsworth', summary='Proper genius')
-    project_1 = Project(
-        name='Go grocery shopping'
-    )
-    project_2 = Project(
-        name='Clean out car'
-    )
+    '''
+    one owner has many projects, one project has many owners
+    '''
+    owner_1 = Owner()
+    owner_2 = Owner()
+    project_1 = Project()
+    project_2 = Project()
     owner_1.projects += [project_1, project_2]
     owner_2.projects.append(project_1)
     assert project_1 in owner_1.projects
@@ -185,48 +177,76 @@ def test_owner_projects():
     assert owner_1 in project_1.owners
     assert owner_2 in project_1.owners
 
+
 def test_project_sites():
+    '''
+    one project has many sites, one site has one project
+    '''
     project = Project(name="meep")
     site_1 = Site()
     project.sites.append(site_1)
     site_2 = Site(project=project)
     assert site_1 in project.sites
     assert site_2 in project.sites
+    assert site_1.project is project
+
 
 def test_site_aoes():
+    '''
+    one site has many areas of effect,
+    one area of effect has one site
+    '''
     site = Site()
     aoe_1 = AreaOfEffect()
     site.areas_of_effect.append(aoe_1)
     aoe_2 = AreaOfEffect(site=site)
     assert aoe_1 in site.areas_of_effect
     assert aoe_2 in site.areas_of_effect
+    assert aoe_1.site is site
 
 
 def test_aoe_radius():
+    '''
+    one area of effect has one Radius
+    radius has no area of effect attribute
+    '''
     radius = Radius(radius=3.14)
     aoe = AreaOfEffect(radius=radius)
-    assert aoe.radius == radius
+    assert aoe.radius is radius
     assert aoe.radius.radius == 3.14
-    assert radius.area_of_effect == aoe
+    with pytest.raises(AttributeError):
+        assert radius.area_of_effect == aoe
 
 
 def test_aoe_line():
+    '''
+    one area of effect has one line,
+    line has no area of effect attribute
+    '''
     line = Line()
     aoe = AreaOfEffect(line=line)
-    assert aoe.line == line
-    with pytest.raises(AttributeError)
-        assert line.area_of_effect == aoe
+    assert aoe.line is line
+    with pytest.raises(AttributeError):
+        assert line.area_of_effect is aoe
 
 
 def test_line_end_address():
+    '''
+    one line has one end address
+    address has no reference to line
+    '''
     address = Address()
     line = Line(end_location=address)
-    assert line.end_location == address
+    assert line.end_location is address
     with pytest.raises(AttributeError):
-        assert address.line == line
+        assert address.line is line
 
 
 def test_aoe_fuel_type():
+    '''
+    one area of effect has one fuel fuel type
+    one fuel type has many areas of effect
+    '''
     fuel = FuelType(fuel="ethanol")
     aoe_1 = AreaOfEffect(fuel_type=fuel)
     aoe_2 = AreaOfEffect(fuel_type=fuel)
@@ -237,6 +257,10 @@ def test_aoe_fuel_type():
 
 
 def test_aoe_address():
+    '''
+    one area of effect has one address
+    address doesn't necessarily have an area of effect
+    '''
     address = Address()
     aoe = AreaOfEffect(address=address)
     assert aoe.address is address
@@ -245,6 +269,10 @@ def test_aoe_address():
 
 
 def test_address_coordinates():
+    '''
+    one address has one set of coordinates,
+    one set of coordinates has one address
+    '''
     c = Coordinate(lat=12.2, long=-42.3)
     a = Address(coordinate=c)
     assert c.address is a
