@@ -5,14 +5,20 @@ db = SQLAlchemy()
 migrate = Migrate(db)
 
 
+project_owner_assoc = db.Table(
+    'project_owner',
+    db.Column('project_id', db.Integer, db.ForeignKey('project.id'), primary_key=True),
+    db.Column('owner_id', db.Integer, db.ForeignKey('owner.id'), primary_key=True)
+)
+
+
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    address = db.Column(db.String(100))
     city = db.Column(db.String(50))
     state = db.Column(db.String(50))
     zip = db.Column(db.Integer)
     owner_id = db.Column(db.Integer, db.ForeignKey('owner.id'))
-    site_id = db.Column(db.Integer, db.ForeignKey('site.id'))
-    site = db.relationship("Site", back_populates="address")
     coordinate = db.relationship("Coordinate", uselist=False,
                                  backref="address")
 
@@ -24,16 +30,11 @@ class AreaOfEffect(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     site_id = db.Column(db.Integer, db.ForeignKey('site.id'),
                         nullable=False)
-    fuel_type_id = db.Column(db.Integer, db.ForeignKey('fuel_type.id'),
-                             nullable=False)
     address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
-    address = db.relationship("Address",
-                              backref=db.backref("area_of_effect",
-                                                 uselist=False))
+    address = db.relationship("Address", uselist=False)
     fuel_type_id = db.Column(db.Integer, db.ForeignKey('fuel_type.id'))
-    fuel_type = db.relationship("FuelType",
-                                backref=db.backref("area_of_effect",
-                                                   uselist=False))
+    radius = db.relationship('Radius', uselist=False)
+    line = db.relationship('Line', uselist=False)
 
 
 class Coordinate(db.Model):
@@ -46,6 +47,7 @@ class Coordinate(db.Model):
 class FuelType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fuel = db.Column(db.String(50))
+    areas_of_effect = db.relationship('AreaOfEffect', backref='fuel_type')
 
 
 class Owner(db.Model):
@@ -53,8 +55,8 @@ class Owner(db.Model):
     name = db.Column(db.String(30), nullable=False)
     summary = db.Column(db.String(1000))
     addresses = db.relationship('Address', backref='owner', lazy=True)
-    project_owner = db.relationship('Project', secondary='project_owner',
-        lazy='subquery', backref=db.backref('pages', lazy=True)
+    projects = db.relationship('Project', secondary=project_owner_assoc,
+        lazy='subquery', backref=db.backref('owners', lazy=True)
     )
 
     def __repr__(self):
@@ -63,15 +65,10 @@ class Owner(db.Model):
 
 class Line(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'),
-                       nullable=False)
-    area_of_effect = db.relationship(
-        'AreaOfEffect',
-        backref=db.backref('line', uselist=False)
-    )
+    area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'))
     end_location_id = db.Column(db.Integer, db.ForeignKey('address.id'),
                                 nullable=False)
-    end_location = db.relationship('Address', backref=db.backref('line', uselist=False))
+    end_location = db.relationship('Address', uselist=False)
 
 
 class Project(db.Model):
@@ -89,28 +86,17 @@ class Project(db.Model):
 
 class Radius(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'),
-                       nullable=False)
-    area_of_effect = db.relationship(
-        'AreaOfEffect',
-        backref=db.backref("radius", uselist=False)
-    )
+    area_of_effect_id = db.Column(db.Integer, db.ForeignKey('area_of_effect.id'))
     radius = db.Column(db.Float)
-
 
 
 class Site(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    project_id = db.Column(db.Integer, db.ForeignKey('project.id'),
-                           nullable=False)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
     GHG_reduced = db.Column(db.Float)
     GGE_reduced = db.Column(db.Float)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-    address = db.relationship("Address", uselist=False, back_populates="Site")
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
+    address = db.relationship("Address", uselist=False)
     areas_of_effect = db.relationship("AreaOfEffect", backref='site',
         lazy=True)
-
-project_owner = db.Table('project_owner',
-    db.Column('project_id', db.Integer, db.ForeignKey('project.id'), primary_key=True),
-    db.Column('owner_id', db.Integer, db.ForeignKey('owner.id'), primary_key=True)
-)
