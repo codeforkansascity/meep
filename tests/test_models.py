@@ -277,3 +277,15 @@ def test_address_coordinates():
     a = Address(coordinate=c)
     assert c.address is a
     assert a.coordinate is c
+
+
+def test_site_address():
+    '''
+    one site has one address
+    one address doesn't necessarily correspond to a site
+    '''
+    address = Address()
+    site = Site(address=address)
+    assert site.address is address
+    with pytest.raises(AttributeError):
+        assert address.site is site

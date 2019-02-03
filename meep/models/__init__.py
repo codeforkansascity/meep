@@ -19,8 +19,6 @@ class Address(db.Model):
     state = db.Column(db.String(50))
     zip = db.Column(db.Integer)
     owner_id = db.Column(db.Integer, db.ForeignKey('owner.id'))
-    site_id = db.Column(db.Integer, db.ForeignKey('site.id'))
-    site = db.relationship("Site", back_populates="address")
     coordinate = db.relationship("Coordinate", uselist=False,
                                  backref="address")
 
@@ -98,6 +96,7 @@ class Site(db.Model):
     GHG_reduced = db.Column(db.Float)
     GGE_reduced = db.Column(db.Float)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
-    address = db.relationship("Address", uselist=False, back_populates="site")
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
+    address = db.relationship("Address", uselist=False)
     areas_of_effect = db.relationship("AreaOfEffect", backref='site',
         lazy=True)
