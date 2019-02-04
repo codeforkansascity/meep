@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 from config import DefaultConfig
 
@@ -18,7 +18,11 @@ def create_app(config=DefaultConfig()):
     migrate.init_app(app, db)
 
     # register blueprints
-    from meep.resources import project
-    app.register_blueprint(project.project)
+    from meep.resources.project import project
+    app.register_blueprint(project)
+
+    @app.route('/meep/api')
+    def ping():
+        return jsonify(sound='MEEP!')
 
     return app
