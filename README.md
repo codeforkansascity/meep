@@ -22,7 +22,7 @@ We are looking for developers who have experience with GIS or mapping apis.
 
 ## How to Contribute
 
-1. Check out the [issues](https://github.com/codeforkansascity/meep/issues) page to see what work currently needs to be done.
+1. Check out the [issues](https://github.com/codeforkansascity/meep/issues) page to see what work currently needs to be done. For a more organized layout, try installing the [ZenHub](https://www.zenhub.com/extension) plugin. 
 2. Leave a comment under the issue you want to work on. A project owner will then assign it to you.  
 3. Clone the repo to your machine. See [here](https://help.github.com/articles/cloning-a-repository/#platform-all) for details on how to do this.
 4. Create a branch whose name adheres to the following format: issue_{{issue number}}_{{name of issue}}. For example, if you are working on issue number 4, which is titled "Design database schema", you might name your branch issue_4_database_schema. For more info on working with branches in git, see [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging).
