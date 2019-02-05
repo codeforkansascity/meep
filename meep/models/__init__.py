@@ -53,7 +53,7 @@ class FuelType(db.Model):
 class Owner(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
-    summary = db.Column(db.String(1000))
+    # summary = db.Column(db.String(1000))
     addresses = db.relationship('Address', backref='owner', lazy=True)
     projects = db.relationship('Project', secondary=project_owner_assoc,
         lazy='subquery', backref=db.backref('owners', lazy=True)

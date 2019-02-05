@@ -78,14 +78,12 @@ def test_new_fuel_type(new_fuel_type):
 def new_owner():
     return Owner(
         id=42,
-        name="Howie Mandell",
-        summary="American actor and talk show host."
+        name="Howie Mandell"
     )
 
 def test_new_owner(new_owner):
     assert new_owner.id == 42
     assert new_owner.name == "Howie Mandell"
-    assert new_owner.summary == "American actor and talk show host."
 
 
 @pytest.fixture(scope='module')
