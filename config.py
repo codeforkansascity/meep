@@ -11,10 +11,10 @@ class DefaultConfig:
 
 class DevelopmentConfig(DefaultConfig):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(basedir, 'meep', 'database', 'dev.db')}"
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(basedir, 'database', 'dev.db')}"
 
 class TestingConfig(DefaultConfig):
     TESTING = True
     BCRYPT_LOG_ROUNDS = 4
     WTF_CSRF_ENABLED = False
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(basedir, 'meep', 'database', 'test.db')}"
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(basedir, 'database', 'test.db')}"
