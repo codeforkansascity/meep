@@ -13,6 +13,7 @@ class DevelopmentConfig(DefaultConfig):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(basedir, 'database', 'dev.db')}"
 
+
 class TestingConfig(DefaultConfig):
     TESTING = True
     BCRYPT_LOG_ROUNDS = 4
