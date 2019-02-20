@@ -1,6 +1,5 @@
 venv
-development_notes
 __pycache__
 app/__pycache__
-sample_data*
-schema.sql
+spreadsheets
+data_cleaning_venv
