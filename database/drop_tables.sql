@@ -1,0 +1,7 @@
+USE meep;
+
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS coalition;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS project_type;
+DROP TABLE IF EXISTS project;

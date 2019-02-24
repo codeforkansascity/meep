@@ -10,13 +10,3 @@ def connect():
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
         )
-
-
-
-
-
-
-
-if __name__ == '__main__':
-    cnxn = connect()
-    print(cnxn)

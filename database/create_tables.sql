@@ -1,3 +1,11 @@
+USE meep;
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS coalition;
+DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS project_type;
+
 CREATE TABLE role (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(20)
@@ -14,8 +22,8 @@ CREATE TABLE user (
   mail VARCHAR(20),
   role_id INT,
   coalition_id INT,
-  FOREIGN KEY role_id REFERENCES role.id,
-  FOREIGN KEY coalition_id REFERENCE coalition.id
+  FOREIGN KEY fk_role(role_id) REFERENCES role(id),
+  FOREIGN KEY fk_coaltion(coalition_id) REFERENCES coalition(id)
 );
 
 CREATE TABLE project_type (
@@ -38,5 +46,5 @@ CREATE TABLE project (
   state VARCHAR(2),
   zip INT,
   area_of_effect POLYGON,
-  FOREIGN KEY type_id REFERENCES project_type.id
+  FOREIGN KEY type_fk(type_id) REFERENCES project_type(id)
 );
