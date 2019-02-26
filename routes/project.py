@@ -11,8 +11,9 @@ cursor = connection.cursor()
 
 project = Blueprint('project', __name__, url_prefix='/project')
 
+
 @project.route('/id/<id>', methods=['GET', 'PUT', 'DELETE'])
-def project(id):
+def project_view(id):
     if request.method == 'GET':
         sql = get_sql('get_project_by_id.sql')
         params = (id)
@@ -20,8 +21,10 @@ def project(id):
 
     elif request.method == 'PUT':
         pass
+
     elif request.method == 'DELETE':
         pass
+
 
 @project.route('/', methods=['POST'])
 def post_project():
