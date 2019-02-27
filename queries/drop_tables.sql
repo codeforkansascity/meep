@@ -1,4 +1,4 @@
-USE meep;
+USE {database};
 
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS coalition;

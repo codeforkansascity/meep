@@ -3,7 +3,7 @@ from routes.test import test
 from routes.project import project
 
 
-def create_app(config_mode='prod'):
+def create_app(config_mode='test'):
 
     app = Flask(__name__)
 

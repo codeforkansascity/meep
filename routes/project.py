@@ -3,8 +3,7 @@ import json
 from flask import Blueprint, request
 import pyodbc
 
-from database.connect import connect
-from queries.queries import get_sql
+from database import connect, get_sql_template
 
 connection = connect()
 cursor = connection.cursor()
@@ -15,7 +14,7 @@ project = Blueprint('project', __name__, url_prefix='/project')
 @project.route('/id/<id>', methods=['GET', 'PUT', 'DELETE'])
 def project_view(id):
     if request.method == 'GET':
-        sql = get_sql('get_project_by_id.sql')
+        sql = get_sql_template('get_project_by_id.sql')
         params = (id)
         result = json.dumps(cursor.execute(sql, params), default=str, indent=2)
 
