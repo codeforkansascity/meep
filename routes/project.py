@@ -13,7 +13,7 @@ project = Blueprint('project', __name__, url_prefix='/project')
 get_project_by_id = create_sql_command('get_project_by_id')
 
 
-@project.route('/id/<id>', methods=['GET', 'PUT', 'DELETE'])
+@project.route('/<id>', methods=['GET', 'PUT', 'DELETE'])
 def project_view(id):
     if request.method == 'GET':
         proj = get_project_by_id('meep', id=id, db='meep')
