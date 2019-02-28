@@ -1,7 +1,7 @@
 import re
 
 import pymysql
-
+from flask import g, current_app
 
 def get_sql_template(filename):
     with open(filename, 'r') as f:
@@ -32,12 +32,13 @@ def create_sql_command(sql_file):
                 raise ValueError(msg.format(arg))
         con = connect(database_name)
         cur = con.cursor()
-        # import pdb; pdb.set_trace()
         sql = sql_template.format(*args, **kwargs)
-        import pdb; pdb.set_trace()
         sql = re.sub(r'(\n|\s)+', ' ', sql)
-        cur.execute(sql)
-        con.commit()
+        queries = sql.split(';')[:-1]
+        # import pdb; pdb.set_trace()
+        for query in queries:
+            cur.execute(f"{query};")
+            con.commit()
         return cur.fetchall()
 
     return sql_command

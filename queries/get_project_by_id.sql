@@ -1,6 +1,6 @@
 -- params: project_id int
 
-USE meep;
+USE {db};
 
-SELECT * FROM projects
-WHERE id = ?
+SELECT * FROM project
+WHERE id = {id};

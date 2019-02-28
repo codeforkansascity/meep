@@ -1,5 +1,6 @@
 import os
 import re
+from operator import attrgetter
 
 import pytest
 
@@ -35,12 +36,12 @@ def test_get_sql_template():
 def test_create_sql_command():
     sql_tmp_1 = '''
         USE {db};
-        CREATE TABLE {table} (
+        CREATE TABLE IF NOT EXISTS {table} (
             id INT PRIMARY KEY AUTO_INCREMENT,
             name VARCHAR(20),
             age INT
         );
-        INSERT INTO {table}(name, age)
+        INSERT INTO {table} (name, age)
         VALUES ('Wes', 26), ('Kurt', 24), ('Tom', 22);
     '''
     sql_tmp_2 = '''
@@ -65,21 +66,19 @@ def test_create_sql_command():
     for cmd in (command_1, command_2, command_3):
         cmd_type = re.search(r"class '(\w+)'", str(type(command_1))).group(1)
         assert cmd_type == 'function'
-
-    import pdb; pdb.set_trace()
-
     res_1 = command_1('meep', db='meep', table='people')
     res_2 = command_2('meep', col_1='name', col_2='age', db='meep',
                       table='people')
     res_3 = command_3('meep', table='people', db='meep')
 
-
-    assert set(res_2) == set([
-        {'name': 'Wes', 'age': 26},
+    assert res_2
+    assert list(sorted(res_2, key=lambda r: r.get('age'))) == [
+        {'name': 'Tom', 'age': 22},
         {'name': 'Kurt', 'age': 24},
-        {'name': 'Tom', 'age': 22}
-    ])
+        {'name': 'Wes', 'age': 26}
+    ]
 
 
-    for fpath in ('queries/tcommand1.sql', 'queries/tcommand2.sql'):
+    for fpath in ('queries/tcommand1.sql', 'queries/tcommand2.sql',
+                  'queries/tcommand3.sql'):
         os.remove(fpath)
