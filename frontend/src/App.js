@@ -1,27 +1,24 @@
 import React, { Component } from 'react';
-import { Switch, Route} from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 
 const MainComponent = () => (
   <div>main component</div>
 );
 
-const TestComponent = () => (
-  <div>
-    <p>test component</p>
-    <Button>This is a button my dude</Button>
-  </div>
-);
 
 class App extends Component {
   render() {
     return (
-      <div id='test'>
-          <p>test</p>
-          <Switch>
-              <Route path="/" component={MainComponent} exact={true} />
-              <Route path="/test" component={TestComponent} exact={true} />
-          </Switch>
+      <div id='app_container'>
+        <div className="container-fluid">
+          <div className="row">
+            <section className="col-5">
+              <h5>Expolore Metropolian Energy Center Projects That Impact Your Area</h5>
+            </section>
+            <section className="col-7">
+              <p>map view</p>
+            </section>
+          </div>
+        </div>
       </div>
     );
   }
