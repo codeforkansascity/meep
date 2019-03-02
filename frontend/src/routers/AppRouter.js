@@ -1,24 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
+import App from '../../src/App';
 
-const MainComponent = () => (
-    <div>Main component</div>
-);
-
-const TestComponent = () => (
-    <div>Testing</div>
-);
+// Import bootstrap css
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppRouter = () => (
     <BrowserRouter>
-        <div>
-            <Switch>
-                <Route path="/" component={MainComponent} exact={true} />
-                <Route path="/test" component={TestComponent} />
-            </Switch>
-        </div>
+        <App/>
     </BrowserRouter>
 );
-  
 
 export default AppRouter;
