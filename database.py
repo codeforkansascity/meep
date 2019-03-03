@@ -25,15 +25,17 @@ def create_sql_command(sql_file):
     if not sql_file.endswith('.sql'):
         sql_file += '.sql'
     sql_template = get_sql_template(sql_file)
-    def sql_command(database_name, *args, **kwargs):
-        for arg in list(args) + list(kwargs.values()):
+
+    def sql_command(database_name, **kwargs):
+        for arg in list(kwargs.values()):
             if not is_safe_sql(arg):
                 msg = 'Potentially malignant sql in parameter:\n{}'
                 raise ValueError(msg.format(arg))
         con = connect(database_name)
         cur = con.cursor()
-        sql = sql_template.format(*args, **kwargs)
+        sql = sql_template.format(**kwargs)
         sql = re.sub(r'(\n|\s)+', ' ', sql)
+        print(sql)
         queries = sql.split(';')[:-1]
         # import pdb; pdb.set_trace()
         for query in queries:
@@ -45,7 +47,7 @@ def create_sql_command(sql_file):
 
 
 #TODO: write a function to catch potentially malignant sql in parameters
-param_regex = re.compile(r"^[-_.'a-zA-Z0-9]+$")
+param_regex = re.compile(r"^[ -_.'a-zA-Z0-9]+$")
 def is_safe_sql(sql):
     return (param_regex.match(sql) is not None)
 
