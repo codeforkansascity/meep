@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-
-const MainComponent = () => (
-  <div>main component</div>
-);
-
+import WelcomePanel from './components/panels/home_panel/WelcomePanel';
+import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div id='app_container'>
+      <div id="app_container">
         <div className="container-fluid">
           <div className="row">
-            <section className="col-5">
-              <h5>Expolore Metropolian Energy Center Projects That Impact Your Area</h5>
+            <section className="col-4" id="side_panel_container">
+            <Switch>
+              <Route path="/" component={WelcomePanel} exact={true} />
+            </Switch>
             </section>
-            <section className="col-7">
-              <p>map view</p>
+            <section className="col-8" id="map_container">
+              <img src="images/static_map.png" id="placeholder_map_img" className="img-fluid" alt="Responsive image"/>
             </section>
           </div>
         </div>

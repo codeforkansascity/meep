@@ -1,3 +1,40 @@
-h5 {
-    color: green;
+.side-panel-content {
+    padding: 5.5rem 1.5rem 2rem 1.5rem;
+    .header-text-container {
+        padding: 1rem 0;
+        .header {
+            color:  #619350;
+            text-transform: uppercase;
+            font-size: 1rem;
+            text-decoration: none solid rgb(97, 147, 80);
+            font-weight: 600;
+        }
+    }
+    .block-text-container {
+        padding: 1rem 0;
+    }
+    .sub-header-container {
+        padding: 1rem 0;
+        .sub-header {
+            color: black;
+            font-size: .8rem;
+            text-transform: uppercase;
+        }
+    }
+    .icon-container {
+        padding: 1rem 0;
+        .flush-left {
+            padding-left: 0;
+        }
+    }
+    .btn-container {
+        padding: 2rem 0 1rem 0;
+        .btn-action {
+            font-size: .75rem;
+            padding: .375rem 1.5rem;
+            background: #509646;
+            color: #ffffff;
+            border-radius: 0;
+        }
+    }
 }
