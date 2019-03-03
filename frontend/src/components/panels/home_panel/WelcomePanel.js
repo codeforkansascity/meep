@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Header from '../../helpers/Header';
 import SubHeader from '../../helpers/SubHeader';
 import IconRow from './home_panel_components/IconRow';
+import ActionButton from '../../helpers/ActionButton';
 
 const WelcomePanel = () => (
     <div className="side-panel-content">
@@ -16,7 +16,7 @@ const WelcomePanel = () => (
         <IconRow icon_url="images/filter.svg" text="Filter the map based on an area and year range that you're interested in"/>
         <IconRow icon_url="images/location-marker.svg" text="Select projects on the map to see more details about each project and the impact they have on the area"/>
         <div className="btn-container">
-            <Button className="btn-action">Get Started</Button>
+            <ActionButton text="Get Started"/>
         </div>
   </div>
 );
