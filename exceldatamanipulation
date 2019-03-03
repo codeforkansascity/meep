@@ -1,0 +1,99 @@
+Created on Mon Feb 25 06:02:45 2019
+
+@author: Hobs
+"""
+
+# Reading, cleaning, and writing MEEP Alternative Fuels and Vehicles into SQL Table.
+
+import pandas as pd
+
+
+# Identify sheets to analyze
+#sheet_list = pd.ExcelFile('kmocccmeep.xlsx')
+#sheet_list = sheet_list.sheet_names
+#sheet_list
+
+# Read first project type
+m16_s0714 = [] # Create empty list
+# Read sheets 7 to 14 and place into list : https://www.reddit.com/r/learnpython/comments/3secz6/making_a_list_of_dataframes_using_pandas/
+for i in range(7,14):
+      m16_s0714i = pd.read_excel('kmocccmeep.xlsx', sheet_name = i)
+      m16_s0714.append(m16_s0714i)
+#print(m16_s0714)
+
+# Create project_type column and insert type. https://www.geeksforgeeks.org/python-pandas-dataframe-insert/
+
+m16_s0714[0].insert(21,"project_type","Alternative Fuel and Vehicles")
+m16_s0714[1].insert(16,"project_type","Electric Vehicles, Hybrids, and Plug-Ins")
+m16_s0714[2].insert(15,"project_type","Off-Road Vehicles")
+m16_s0714[3].insert(13,"project_type","Fuel Economy Improvements")
+m16_s0714[4].insert(18,"project_type","VMT Reductions")
+m16_s0714[5].insert(8,"project_type","Truck Stop Electrification")
+m16_s0714[6].insert(11,"project_type","Other Ilde Reduction")
+
+# Select certain columns from Dataframe
+m16_s071410 = []
+
+cnl1 = ['project_type','Fleet/station name','Notes', 'GGE Reduced (gal)','GHG Reduced (tons)']
+cnl2 = ['project_type','Fleet/station name','Notes', 'GGE Reduced (gal)','GHG Reduced (tons)']
+cnl3 = ['project_type','Fleet name','Notes', 'GGE Reduced (gal)','GHG Reduced (tons)']
+cnl4 = ['project_type','Project name','Notes', 'GGE Reduced (gal)','GHG Reduced (tons)']
+
+
+m16_s071400 = m16_s0714[0].loc[:,cnl1]
+m16_s071410.append(m16_s071400)
+   
+m16_s071401 = m16_s0714[1].loc[:,cnl2]
+m16_s071410.append(m16_s071401)
+
+m16_s071402 = m16_s0714[2].loc[:,cnl3]
+m16_s071410.append(m16_s071402)
+
+for i in range(3,7):
+    m16_s071403 = m16_s0714[i].loc[:,cnl4]
+    m16_s071410.append(m16_s071403)
+
+ 
+# Rename project columns 
+m16_s071421 = []
+
+cnl21 = {'Fleet/station name' : 'name'}
+cnl22 = {'Fleet name' : 'name'}
+cnl23 = {'Project name' : 'name'}
+
+
+for i in range (0,2):
+    m16_s071422= m16_s071410[i].rename(columns =cnl21)
+    m16_s071421.append(m16_s071422)
+
+m16_s071423= m16_s071410[2].rename(columns =cnl22)
+m16_s071421.append(m16_s071423)
+
+for i in range(3,7):
+    m16_s071424= m16_s071410[i].rename(columns =cnl23)
+    m16_s071421.append(m16_s071424)
+
+
+# Concatenate list m16_s071421
+m16_s0714_0000 = pd.concat(m16_s071421)
+
+# Rename columns  project_name, project_type  source: https://www.geeksforgeeks.org/python-pandas-split-strings-into-two-list-columns-using-str-split/
+m16_s0714_0000 = m16_s0714_0000.rename(columns = {
+        'Notes' : 'year',
+        'GGE Reduced (gal)' : 'gge_reduced',
+        'GHG Reduced (tons)' : 'ghg_reduced',
+        })
+
+
+# Extract Start_Date https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html
+m16_s0714_0001 = m16_s0714_0000.loc[:,'year']
+m1612_17 = m16_s0714_0001.str.extract(r'(?P<year>\d\d\d\d)')
+
+# Assign adjusted Start_Date to meep_altfv Dataframe as to data frame
+m16_s0714_0000 = m16_s0714_0000.assign(year = m1612_17)
+
+
+# Rearrange colums https://stackoverflow.com/questions/13148429/how-to-change-the-order-of-dataframe-columns
+# Write and save to new excel sheet : https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html
+
+m16_s0714_0000.to_excel("m16.0000.xlsx")
