@@ -7,6 +7,7 @@ import ZipLookUpField from './filter_map_components/ZipLookUpField';
 import DateRangeSlider from './filter_map_components/DateRangeSilder';
 import StatsContainer from './area_stats_components/AreaStatsContainer';
 import SelectProjectTypes from './filter_map_components/SelectProjectTypes';
+import { Link } from 'react-router-dom';
 
 const ProjectFiltersPanel = () => (
     <div id="project_filters_panel">
@@ -37,13 +38,15 @@ const ProjectFiltersPanel = () => (
         <StatsContainer/>
         <div className="row">
             <div className="col">
-                <ActionButton text="Search"/>
+                <Link to="/projects">
+                    <ActionButton text="Search"/>
+                </Link>
                 <ActionButton text="Clear Filters"/>
             </div>
         </div>
         <div className="row">
             <div className="col">
-                <span class="pr-3">Would you like to report a new project?</span>
+                <span className="pr-3">Would you like to report a new project?</span>
                 <ActionButton text="Click Here"/>
             </div>
         </div>
