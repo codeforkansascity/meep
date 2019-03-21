@@ -14,4 +14,4 @@ const ProjectCard = () => (
     </div>
 );
 
-export default IconRow;
+export default ProjectCard;
