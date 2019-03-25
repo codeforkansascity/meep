@@ -11,12 +11,12 @@ The aim of this project is to create a central database that consolidates MEC's 
 
 ### Technology Stack (Still subject to change)
 
-* Database: Postgres
+* Database: MySQL
 * Flask API
-  * Flask Restful
   * Flask SQLAlchemy
   * Flask Migrate
-* React frontend?
+* React frontend
+* Docker
 
 We are looking for developers who have experience with GIS or mapping apis. 
 
