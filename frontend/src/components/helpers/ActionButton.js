@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const ActionButton = (props) => (
-    <Button className="btn-action">{props.text}</Button>
+const ActionButton = ({ Text }) => (
+    <Button className="btn-action">{Text}</Button>
 );
 
 export default ActionButton;

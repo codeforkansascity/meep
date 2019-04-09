@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SubHeader = (props) => (
+const SubHeader = ({ Text }) => (
     <div className="sub-header-container">
-        <div className="sub-header">{props.text}</div>
+        <div className="sub-header">{Text}</div>
     </div>
 );
 

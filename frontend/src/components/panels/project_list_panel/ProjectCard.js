@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ProjectCard = () => (
+const ProjectCard = ({ iconUrl}) => (
     <div className="icon-container row">
         <div className="col-2">
-            <img src={props.icon_url}/>
+            <img src={iconUrl}/>
         </div>
         <div className="col-5 flush-left">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.</p>

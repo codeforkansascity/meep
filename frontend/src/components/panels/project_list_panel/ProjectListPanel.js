@@ -4,9 +4,7 @@ import ProjectCard from './ProjectCard';
 
 const ProjectListPanel = () => (
     <div id="project_list_container">
-        <Header text="Project That Match Your Search"/>
-        <br/>
-        <ProjectCard/>
+        <Header Text="Project That Match Your Search"/>
     </div>
 );
 

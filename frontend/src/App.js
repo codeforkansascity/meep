@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import WelcomePanel from './components/panels/home_panel/WelcomePanel';
-import ProjectListPanel from './components/panels/project_list_panel/ProjectListPanel';
-import ProjectFiltersPanel from './components/panels/project_filters_panel/ProjectFiltersPanel';
+import {WelcomePanel, ProjectListPanel, ProjectFiltersPanel}  from './components/panels/index';
 import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {

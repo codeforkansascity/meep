@@ -7,16 +7,16 @@ import { Link } from 'react-router-dom';
 
 const WelcomePanel = () => (
     <div id="welcome_panel_content">
-        <Header text="Explore Metropolian Energy Center Projects That Impact Your Area"/>
+        <Header Text="Explore Metropolian Energy Center Projects That Impact Your Area"/>
         <div className="block-text-container">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.</p>
         </div>
-        <SubHeader text="Here's How It Works"/>
-        <IconRow icon_url="images/filter.svg" text="Filter the map based on an area and year range that you're interested in"/>
-        <IconRow icon_url="images/location-marker.svg" text="Select projects on the map to see more details about each project and the impact they have on the area"/>
+        <SubHeader Text="Here's How It Works"/>
+        <IconRow iconUrl="images/filter.svg" Text="Filter the map based on an area and year range that you're interested in"/>
+        <IconRow iconUrl="images/location-marker.svg" Text="Select projects on the map to see more details about each project and the impact they have on the area"/>
         <div className="btn-container">
             <Link to="/filters">
-                <ActionButton text="Get Started"/>
+                <ActionButton Text="Get Started"/>
             </Link>
         </div>
   </div>
