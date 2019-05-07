@@ -1,0 +1,22 @@
+#project_filters_panel {
+    .stats-container {
+        opacity: .7;
+        font-size: .7rem;
+        padding: 2rem 1rem;
+    }
+    .input-group-sm {
+        input {
+            border-radius: 0;
+        }
+    }
+    .project-types-container {
+        padding-left: 0.5rem;
+        .form-check {
+            margin-bottom: 0.5rem;
+            .form-check-label {
+                line-height: 2;
+                font-weight: 600;
+            }
+        }
+    }
+}
