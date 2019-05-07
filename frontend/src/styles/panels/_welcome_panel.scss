@@ -8,6 +8,12 @@
         .flush-left {
             padding-left: 0;
         }
+        .location-marker {
+            svg {
+                max-height: 32px;
+                max-width: 32px;
+            }
+        }
     }
     .btn-container {
         padding: 1.5rem 0;
