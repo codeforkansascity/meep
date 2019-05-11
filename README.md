@@ -15,7 +15,7 @@ The aim of this project is to create a central database that consolidates MEC's 
 * React frontend
 * Flask API
   * Served by gunicorn
-  * Database: Postgres
+* Database: Postgres
 * Nginx reverse proxy
 * All tied together by Docker
 
