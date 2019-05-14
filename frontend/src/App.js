@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {WelcomePanel, ProjectListPanel, ProjectFiltersPanel}  from './components/panels/index';
+import {WelcomePanel, ProjectListPanel, ProjectFiltersPanel, ProjectDetailsPanel}  from './components/panels/index';
 import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
@@ -13,6 +13,7 @@ class App extends Component {
                 <Route path="/" component={WelcomePanel} exact={true} />
                 <Route path="/filters" component={ProjectFiltersPanel} />
                 <Route path="/projects" component={ProjectListPanel} />
+                <Route path="/details" component={ProjectDetailsPanel} />
               </Switch>
             </section>
             <section className="col-8" id="map_container">

@@ -1,0 +1,23 @@
+#project_list_container {
+    .project-list {
+        .project-card {
+            .row {
+                padding: 0.5rem;
+                cursor: pointer;
+                &:hover {
+                    background: #f2f2f2;
+                }
+                .project-card-header {
+                    margin-top: 0.5rem;
+                    font-weight: bold;
+                }
+                .project-card-marker {
+                    padding-top: 16px;
+                }
+                .project-card-img {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

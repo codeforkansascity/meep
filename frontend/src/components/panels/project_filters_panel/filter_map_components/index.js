@@ -1,11 +1,11 @@
 import ProximitySlider from './ProximitySlider';
 import ZipLookUpField from './ZipLookUpField';
 import DateRangeSlider from './DateRangeSlider';
-import SelectProjectTypes from './SelectProjectTypes';
+import CheckBoxRow from './CheckBoxRow';
 
 export {
     ProximitySlider,
     ZipLookUpField,
     DateRangeSlider,
-    SelectProjectTypes
+    CheckBoxRow
 }

@@ -1,0 +1,21 @@
+#project_details_container {
+    .project-details-img {
+        max-width: 100%;
+    }
+    .impact-stat-row {
+        padding-left: 1rem;
+        .impact-stat-icon {
+            margin-bottom: 6px;
+        }
+        .impact-stat-number {
+            font-size: 16px;
+            font-weight: 900;
+            padding: 12px;
+            color: #000000;
+        }
+        .impact-stat-text {
+            font-size: 12px;
+            font-weight: 600;
+        }
+    }
+}

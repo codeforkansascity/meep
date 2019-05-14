@@ -4,6 +4,7 @@ import SubHeader from '../../helpers/SubHeader';
 import IconRow from './home_panel_components/IconRow';
 import ActionButton from '../../helpers/ActionButton';
 import { Link } from 'react-router-dom';
+import LocationMarker from '../../helpers/locationMarker';
 
 const WelcomePanel = () => (
     <div id="welcome_panel_content">
@@ -12,8 +13,8 @@ const WelcomePanel = () => (
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.</p>
         </div>
         <SubHeader Text="Here's How It Works"/>
-        <IconRow iconUrl="images/filter.svg" Text="Filter the map based on an area and year range that you're interested in"/>
-        <IconRow iconUrl="images/location-marker.svg" Text="Select projects on the map to see more details about each project and the impact they have on the area"/>
+        <IconRow IconType="filter" Text="Select projects on the map to see more details about each project and the impact they have on the area"/>
+        <IconRow IconType="default" Text="Filter the map based on an area and year range that you're interested in"/>
         <div className="btn-container">
             <Link to="/filters">
                 <ActionButton Text="Get Started"/>

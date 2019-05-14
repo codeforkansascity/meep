@@ -1,0 +1,15 @@
+.location-marker, .project-type-marker {
+    .default, .infrastructure {
+        fill: #1b2661;
+    }
+    .building {
+        fill: #fdce06;
+    }
+    .vehicle {
+        fill: #318bd6;
+    }
+}
+
+.project-type-marker {
+    padding-left: 4px;
+}
