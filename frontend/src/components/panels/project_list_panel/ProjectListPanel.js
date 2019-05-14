@@ -16,7 +16,7 @@ class ProjectListPanel extends React.Component {
                 <BackToLink Route="/filters" Text="Back to filters"/>
                 <Header Text="Project That Match Your Search"/>
                 <div className="project-list">
-                    <ProjectCard onClick={this.handleProjectCardClick()} Name="KCI Airport Busses" Type="infrastructure" Rank="1"/>
+                    <ProjectCard Name="KCI Airport Busses" Type="infrastructure" Rank="1"/>
                     <ProjectCard Name="Project Name" Type="vehicle" Rank="2"/>
                     <ProjectCard Name="Project Name" Type="building" Rank="3"/>
                     <ProjectCard Name="Project Name" Type="building" Rank="4"/>
