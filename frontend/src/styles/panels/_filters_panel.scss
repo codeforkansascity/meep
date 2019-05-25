@@ -19,4 +19,45 @@
             }
         }
     }
+
+    .proximity-slider {
+      width: 100%;
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      .proximity-slider-track {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;        
+        flex-wrap: nowrap;
+        .proximity-slider-track-left {
+          width: 55%;
+          height: 2px;
+          background: #619350;
+          left: 0;
+          display: inline;
+        }
+        .proximity-slider-track-thumb {
+          min-width: 20px;
+          min-height: 20px;
+          width: 10%;
+          background: #619350;
+          border-radius: 100%;
+          display: inline;
+        }
+        .proximity-slider-track-right {
+          width: 35%;
+          height: 2px;
+          background: #efefef;
+          right: 0;
+          display: inline;
+        }
+      }
+      .proximity-slider-ticks {
+         width: 100%;
+         height: 50%;
+      }
+    }
 }

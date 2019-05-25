@@ -19,7 +19,7 @@ const ProjectFiltersPanel = () => (
                 </div>
                 <div className="col-7">
                     <SubHeader Text="Proximity"/>
-                    <ProximitySlider/>
+                    <ProximitySlider min="1" max="20" position=".5"/>
                 </div>
             </div>
             <div className="row">
