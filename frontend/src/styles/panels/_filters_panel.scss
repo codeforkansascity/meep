@@ -46,6 +46,15 @@
           border-radius: 100%;
           z-index: 10;
         }
+        .proximity-slider-track-thumb:hover {
+          transform: scale(1.2);
+          background: #9bcc89;
+          border: 2px solid #fff;
+          box-shadow: 0px 0px 2px 3px #419723;
+        }
+        .proximity-slider-track-thumb:active {
+          transform: scale(1.5)
+        }
         .proximity-slider-track-right {
           height: 2px;
           background: #efefef;
