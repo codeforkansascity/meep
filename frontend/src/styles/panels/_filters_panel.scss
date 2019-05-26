@@ -22,42 +22,66 @@
 
     .proximity-slider {
       width: 100%;
-      height: 50%;
+      height: 30%;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       .proximity-slider-track {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: center;        
+        align-items: center;
         flex-wrap: nowrap;
         .proximity-slider-track-left {
           width: 55%;
           height: 2px;
-          background: #619350;
+          background: #419723;
           left: 0;
-          display: inline;
         }
         .proximity-slider-track-thumb {
           min-width: 20px;
           min-height: 20px;
           width: 10%;
-          background: #619350;
+          background: #419723;
           border-radius: 100%;
-          display: inline;
+        }
+        .proximity-slider-track-thumb:hover {
+          cursor: pointer;
         }
         .proximity-slider-track-right {
           width: 35%;
           height: 2px;
           background: #efefef;
           right: 0;
-          display: inline;
         }
       }
       .proximity-slider-ticks {
          width: 100%;
-         height: 50%;
+         height: 30%;
+         display: flex;
+         flex-direction: row;
+         transform: translateY(-7px);
+         .tick-spacing {
+           height: 6px;
+           width: 25%;
+           border-right: 1px solid #7c7c7c;
+         }
+         .tick-spacing:first-child {
+           border-left: 1px solid #7c7c7c;
+         }
+      }
+      .proximity-slider-tick-labels {
+        width: 125%;
+        height: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        transform: translateY(-7px);
+        .tick-label {
+          width: 25%;
+          transform: translateX(-30%);
+        }
       }
     }
 }
