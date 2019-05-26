@@ -34,15 +34,14 @@
         align-items: center;
         flex-wrap: nowrap;
         .proximity-slider-track-left {
-          width: 55%;
           height: 2px;
           background: #419723;
           left: 0;
         }
         .proximity-slider-track-thumb {
-          min-width: 20px;
-          min-height: 20px;
-          width: 10%;
+          min-width: 18px;
+          min-height: 18px;
+          width: 8%;
           background: #419723;
           border-radius: 100%;
         }
@@ -50,10 +49,8 @@
           cursor: pointer;
         }
         .proximity-slider-track-right {
-          width: 35%;
           height: 2px;
           background: #efefef;
-          right: 0;
         }
       }
       .proximity-slider-ticks {

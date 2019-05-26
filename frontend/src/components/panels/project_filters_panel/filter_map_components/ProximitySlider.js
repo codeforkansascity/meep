@@ -16,7 +16,7 @@ class ProximitySlider extends Component {
   render () {
     return (
       <div className="proximity-slider">
-        <ProximitySliderTrack/>
+        <ProximitySliderTrack position={this.state.position}/>
         <ProximitySliderTicks/>
       </div>
     )
@@ -24,11 +24,20 @@ class ProximitySlider extends Component {
 }
 
 const ProximitySliderTrack = props => {
+  var {position} = props;
+  var leftWidth = `${Math.floor(position*100)}%`;
+  var rightWidth = `${Math.floor((1 - position)*100)}%`
   return (
     <div className="proximity-slider-track">
-      <div className="proximity-slider-track-left"></div>
+      <div
+        className="proximity-slider-track-left"
+        style={{width: leftWidth}}>
+      </div>
       <div className="proximity-slider-track-thumb"></div>
-      <div className="proximity-slider-track-right"></div>
+      <div
+        className="proximity-slider-track-right"
+        style={{width: rightWidth}}>
+      </div>
     </div>
   )
 }
