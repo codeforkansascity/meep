@@ -12,7 +12,6 @@ class ProximitySlider extends Component {
     }
   }
 
-
   render () {
     return (
       <div className="proximity-slider">
@@ -29,6 +28,7 @@ class ProximitySliderTrack extends Component {
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.stopDragging = this.stopDragging.bind(this);
+    this.computeNewPosition = this.computeNewPosition.bind(this);
     this.sliderTrackDomElement = React.createRef();
     var {position} = props;
     this.state = {
@@ -39,24 +39,27 @@ class ProximitySliderTrack extends Component {
     }
   }
 
-  handleMouseDown(e) {
-    console.log('mouse down')
+  computeNewPosition = e => {
+    var boundingRect;
+    boundingRect = this.sliderTrackDomElement.current.getBoundingClientRect();
+    var elemLeft = boundingRect.left;
+    var elemRight = boundingRect.right;
+    var mouseX = e.clientX;
+    var position = (mouseX - elemLeft)/(elemRight - elemLeft);
+    position = position > 0 ? position : 0;
+    position = position < 1 ? position : 1;
+    return position
+  }
+
+  handleMouseDown = e => {
     this.setState({
       dragging: true,
     })
   }
 
-  handleMouseMove(e) {
+  handleMouseMove = e => {
     if (this.state.dragging) {
-      console.log('dragging')
-      var boundingRect
-      boundingRect = this.sliderTrackDomElement.current.getBoundingClientRect()
-      var elemLeft = boundingRect.left
-      var elemRight = boundingRect.right
-      var mouseX = e.clientX
-      var position = (mouseX - elemLeft)/(elemRight - elemLeft);
-      position = position > 0 ? position : 0;
-      position = position < 1 ? position : 1;
+      var position = this.computeNewPosition(e);
       this.setState({
         position: position,
         leftWidth: `${Math.floor(position*100)}%`,
@@ -65,13 +68,22 @@ class ProximitySliderTrack extends Component {
     }
   }
 
-  stopDragging(e) {
-    console.log('mouse up')
+  handleClick = e => {
+    var position = this.computeNewPosition(e);
     this.setState({
-      dragging: false,
+      position: position,
+      leftWidth: `${Math.floor(position*100)}%`,
+      rightWidth: `${Math.floor((1 - position)*100)}%`,
     })
   }
 
+  stopDragging = e => {
+    if(this.state.dragging){
+      this.setState({
+        dragging: false,
+      })
+    }
+  }
 
   render() {
     return (
@@ -83,7 +95,8 @@ class ProximitySliderTrack extends Component {
         onMouseLeave={this.stopDragging}>
         <div
           className="proximity-slider-track-left"
-          style={{width: this.state.leftWidth}}>
+          style={{width: this.state.leftWidth}}
+          onClick={this.handleClick}>
         </div>
         <div
           className="proximity-slider-track-thumb"
@@ -91,7 +104,9 @@ class ProximitySliderTrack extends Component {
         ></div>
         <div
           className="proximity-slider-track-right"
-          style={{width: this.state.rightWidth}}>
+          style={{width: this.state.rightWidth}}
+          onClick={this.handleClick}
+        >
         </div>
       </div>
     )
@@ -103,7 +118,6 @@ const ProximitySliderTicks = props => {
   const {labels} = props;
   const tickSpacingWidth = `${Math.floor(100/(labels.length - 1))}%`;
   const renderTickSpacing = () => {
-    console.log("rendering tick spacing");
     return (
         <div
           className="tick-spacing"
@@ -114,7 +128,6 @@ const ProximitySliderTicks = props => {
     )
   };
   const renderTickLabel = label => {
-    console.log("rendering tick label")
     return <div className="tick-label">{label}</div>
   };
   return (
