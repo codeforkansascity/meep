@@ -17,7 +17,7 @@ class ProximitySlider extends Component {
     return (
       <div className="proximity-slider">
         <ProximitySliderTrack position={this.state.position}/>
-        <ProximitySliderTicks/>
+        <ProximitySliderTicks labels={this.state.labels}/>
       </div>
     )
   }
@@ -54,19 +54,14 @@ class ProximitySliderTrack extends Component {
       var elemLeft = boundingRect.left
       var elemRight = boundingRect.right
       var mouseX = e.clientX
-      console.log(`elemLeft = ${elemLeft}`)
-      console.log(`elemRight = ${elemRight}`)
-      console.log(`mouseX = ${mouseX}`)
       var position = (mouseX - elemLeft)/(elemRight - elemLeft);
       position = position > 0 ? position : 0;
       position = position < 1 ? position : 1;
-      console.log(`position = ${position}`)
       this.setState({
         position: position,
         leftWidth: `${Math.floor(position*100)}%`,
         rightWidth: `${Math.floor((1 - position)*100)}%`,
       })
-
     }
   }
 
@@ -105,20 +100,30 @@ class ProximitySliderTrack extends Component {
 
 
 const ProximitySliderTicks = props => {
+  const {labels} = props;
+  const tickSpacingWidth = `${Math.floor(100/(labels.length - 1))}%`;
+  const renderTickSpacing = () => {
+    console.log("rendering tick spacing");
+    return (
+        <div
+          className="tick-spacing"
+          style={{
+            width: tickSpacingWidth,
+          }}
+        ></div>
+    )
+  };
+  const renderTickLabel = label => {
+    console.log("rendering tick label")
+    return <div className="tick-label">{label}</div>
+  };
   return (
     <React.Fragment>
     <div className="proximity-slider-ticks">
-      <div className="tick-spacing"></div>
-      <div className="tick-spacing"></div>
-      <div className="tick-spacing"></div>
-      <div className="tick-spacing"></div>
+      {labels.slice(0, -1).map(label => renderTickSpacing())}
     </div>
     <div className="proximity-slider-tick-labels">
-      <div className="tick-label">0 mi</div>
-      <div className="tick-label">5 mi</div>
-      <div className="tick-label">10 mi</div>
-      <div className="tick-label">15 mi</div>
-      <div className="tick-label">20 mi</div>
+      {labels.map(label => renderTickLabel(label))}
     </div>
     </React.Fragment>
   )

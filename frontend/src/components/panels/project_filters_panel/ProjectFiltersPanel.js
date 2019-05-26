@@ -22,7 +22,7 @@ const ProjectFiltersPanel = () => (
                     <ProximitySlider
                        min={0}
                        max={20}
-                       position={.25}
+                       position={.5}
                        labels={["0 mi", "5 mi", "10 mi", "15 mi", "20 mi"]}
                      />
                 </div>
