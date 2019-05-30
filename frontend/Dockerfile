@@ -1,12 +1,19 @@
-FROM node:12.2.0-alpine
+FROM node:8.16.0-alpine
 
 WORKDIR /app
 
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json /app
 
-COPY package.json /app/package.json
+RUN npm install
 
-RUN npm install \
-  && npm install react-scripts@3.0.1 -g
+COPY src/* src/
+
+COPY .babelrc /app
+
+COPY public/* public/
+
+COPY webpack.config.js /app
+
+EXPOSE 8080
 
 CMD ["npm", "run", "dev-server"]
