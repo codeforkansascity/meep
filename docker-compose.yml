@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public/images:/app/public/images
+    links:
+      - api
+
+  api:
+    image: galbwe92/meep_api:dev0.0.0
+    ports:
+      - 8000:8000
