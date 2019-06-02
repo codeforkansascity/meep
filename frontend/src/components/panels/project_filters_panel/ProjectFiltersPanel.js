@@ -4,14 +4,8 @@ import SubHeader from '../../helpers/SubHeader';
 import ActionButton from '../../helpers/ActionButton';
 import StatsContainer from './area_stats_components/AreaStatsContainer';
 import BackToLink from '../../helpers/BackToLink';
-import {ProximitySlider, ZipLookUpField, DateRangeSlider, CheckBoxRow} from './filter_map_components/index';
+import {ProximitySlider, ZipLookUpField, DateRangeSlider, CheckBox} from './filter_map_components/index';
 import { Link } from 'react-router-dom';
-
-function toggleView (Label) {
-    let new_check_state = !document.getElementById(Label).getElementsByClassName("form-check-input")[0].checked;
-    // console.log(new_check_state);
-    document.getElementById(Label).getElementsByClassName("form-check-input")[0].checked = new_check_state;
-};
 
 const ProjectFiltersPanel = () => (
     <div id="project_filters_panel">
@@ -38,9 +32,9 @@ const ProjectFiltersPanel = () => (
                 <div className="col">
                     <SubHeader Text="Project Type"/>
                     <div className="project-types-container">
-                        <CheckBoxRow Label="Building" ProjectType="building" toggleView={toggleView}/>
-                        <CheckBoxRow Label="Vehicle Transportation" ProjectType="vehicle" toggleView={toggleView}/>
-                        <CheckBoxRow Label="Infrastructure Transportation" ProjectType="infrastructure" toggleView={toggleView}/>
+                        <CheckBox Label="Building" ProjectType="building"/>
+                        <CheckBox Label="Vehicle Transportation" ProjectType="vehicle"/>
+                        <CheckBox Label="Infrastructure Transportation" ProjectType="infrastructure"/>
                     </div>
                 </div>
             </div>
