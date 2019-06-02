@@ -7,6 +7,12 @@ import BackToLink from '../../helpers/BackToLink';
 import {ProximitySlider, ZipLookUpField, DateRangeSlider, CheckBoxRow} from './filter_map_components/index';
 import { Link } from 'react-router-dom';
 
+function toggleView (Label) {
+    let new_check_state = !document.getElementById(Label).getElementsByClassName("form-check-input")[0].checked;
+    // console.log(new_check_state);
+    document.getElementById(Label).getElementsByClassName("form-check-input")[0].checked = new_check_state;
+};
+
 const ProjectFiltersPanel = () => (
     <div id="project_filters_panel">
         <BackToLink Route="/" Text="Back to home"/>
@@ -32,9 +38,9 @@ const ProjectFiltersPanel = () => (
                 <div className="col">
                     <SubHeader Text="Project Type"/>
                     <div className="project-types-container">
-                        <CheckBoxRow Label="Building" ProjectType="building"/>
-                        <CheckBoxRow Label="Vehicle Transportation" ProjectType="vehicle"/>
-                        <CheckBoxRow Label="Infrastructure Transportation" ProjectType="infrastructure"/>
+                        <CheckBoxRow Label="Building" ProjectType="building" toggleView={toggleView}/>
+                        <CheckBoxRow Label="Vehicle Transportation" ProjectType="vehicle" toggleView={toggleView}/>
+                        <CheckBoxRow Label="Infrastructure Transportation" ProjectType="infrastructure" toggleView={toggleView}/>
                     </div>
                 </div>
             </div>
