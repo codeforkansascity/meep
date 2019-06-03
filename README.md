@@ -20,6 +20,9 @@ This assumes that you have already installed [node](https://nodejs.org/en/).
 5. In a browser, navigate to ```http://localhost:8080```. You should see the app running.
 
 
+## Wireframe
+This is what we want to replicate: https://preview.uxpin.com/3ebaab4bf3defd232e90c32218050bb67db4e8bb#/pages//simulate/no-panels. 
+
 ## How to Contribute
 
 1. Check out the [issues](https://github.com/codeforkansascity/meep/issues) page to see what work currently needs to be done. For a more organized layout, try installing the [ZenHub](https://www.zenhub.com/extension) plugin. 
