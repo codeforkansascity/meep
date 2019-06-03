@@ -9,6 +9,8 @@ Metropolitan Energy Center (MEC) is a nonprofit promoting energy efficiency, eco
 
 The aim of this project is to create a central database that consolidates MEC's data on the impact their programs have on air quality  and improving public health, and then to create a map-based interface to the data. This app will provide MEC with a means to summarize the impact of their work to their funders. It will also be used to increase the general public's awareness of local projects dedicated to improving sustainabilty.
 
+This repository is only for front-end. Please check back-end repo in https://github.com/codeforkansascity/meep-backend.
+
 ## Installation
 
 This assumes that you have already installed [node](https://nodejs.org/en/). 
@@ -33,5 +35,8 @@ This is what we want to replicate: https://preview.uxpin.com/3ebaab4bf3defd232e9
 6. Push your branch back to github and open a pull request. See [here](https://help.github.com/articles/pushing-to-a-remote/) for details. A project owner will review your changes and either approve a merge, or leave comments on what needs to be done before your changes can be merged. 
 
 
+## Member
+Piero A. Pretto : piero.devops@gmail.com
+Wes Galbraith : galbwe92@gmail.com
 
  
