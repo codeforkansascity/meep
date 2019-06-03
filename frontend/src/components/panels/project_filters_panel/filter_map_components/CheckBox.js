@@ -1,5 +1,6 @@
 import React from 'react';
 import CheckBoxRow from '../filter_map_components/CheckBoxRow';
+import ProjectTypeMarker from '../../../helpers/projectTypeMarker';
 
 class CheckBox extends React.Component {
     constructor(props) {
@@ -8,15 +9,24 @@ class CheckBox extends React.Component {
         this.state = {checked: false};
     }
 
-    toggleView(label) {
-        let new_check_state = !this.state.checked;
-        this.setState({checked: new_check_state});
-        document.getElementById(label).getElementsByClassName("form-check-input")[0].checked = new_check_state;
+    toggleView = event => {
+        this.setState({checked: event.target.checked});
     }
 
     render() {
         return (
-            <CheckBoxRow Label={this.props.Label} ProjectType={this.props.ProjectType} toggleView={this.toggleView} />
+            <div>
+                <label>
+                    <CheckBoxRow 
+                        Label={this.props.Label} 
+                        ProjectType={this.props.ProjectType} 
+                        checked={this.state.checked} 
+                        toggleView={this.toggleView}
+                    />
+                    <span style={{ marginLeft: 8 }}>{this.props.Label}</span>
+                    <ProjectTypeMarker FillClass={this.props.ProjectType}/> 
+                </label>
+            </div>
         );
     }
 }

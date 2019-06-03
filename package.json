@@ -1,0 +1,29 @@
+{
+  "name": "meep",
+  "version": "1.0.0",
+  "description": "Mapping Energy Efficiency &amp; Public Health",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeforkansascity/meep.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeforkansascity/meep/issues"
+  },
+  "homepage": "https://github.com/codeforkansascity/meep#readme",
+  "dependencies": {
+    "dev-server": "^0.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.1"
+  },
+  "devDependencies": {}
+}
