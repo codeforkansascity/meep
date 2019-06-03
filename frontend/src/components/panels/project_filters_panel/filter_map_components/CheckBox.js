@@ -1,19 +1,17 @@
 import React from 'react';
 import CheckBoxRow from '../filter_map_components/CheckBoxRow';
-import ProjectTypeMarker from '../../../helpers/projectTypeMarker';
 
 class CheckBox extends React.Component {
     constructor(props) {
         super(props);
         this.toggleView = this.toggleView.bind(this);
-        this.state = {checked: false};
+        this.state = { checked: false };
     }
 
     toggleView = event => {
-        this.setState({checked: event.target.checked});
+        this.setState({ checked: event.target.checked });
     }
 
-    // Collapse the labels and projectTypeMarker back into CheckBoxRow
     render() {
         return (
             <div>
@@ -24,8 +22,6 @@ class CheckBox extends React.Component {
                         checked={this.state.checked} 
                         toggleView={this.toggleView}
                     />
-                    <span style={{ marginLeft: 8 }}>{this.props.Label}</span>
-                    <ProjectTypeMarker FillClass={this.props.ProjectType}/> 
                 </label>
             </div>
         );

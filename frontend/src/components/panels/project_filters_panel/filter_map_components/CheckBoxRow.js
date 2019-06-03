@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 import ProjectTypeMarker from '../../../helpers/projectTypeMarker';
 import styled from 'styled-components'
 
@@ -50,6 +49,8 @@ const CheckBoxRow = ({ Label, ProjectType, checked, toggleView }) => (
                 <polyline points="20 6 9 17 4 12" />
             </Icon>
         </StyledCheckbox>
+        <span style={{ marginLeft: 8 }}>{Label}</span>
+        <ProjectTypeMarker FillClass={ProjectType}/> 
     </CheckboxContainer> 
 );
 
