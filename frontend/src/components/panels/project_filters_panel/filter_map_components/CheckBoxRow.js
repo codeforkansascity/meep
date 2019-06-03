@@ -10,13 +10,14 @@ const CheckboxContainer = styled.div`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: white;
-  stroke-width: 2px;
+  stroke: #5B5A5E;
+  stroke-width: 6.5px;
+  width: 12px;
+  padding-bottom: 8px;
+  padding-right: 2px;
 `
 
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-  // Hide checkbox visually but remain accessible to screen readers.
-  // Source: https://polished.js.org/docs/#hidevisually
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
@@ -26,20 +27,15 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   padding: 0;
   position: absolute;
   white-space: nowrap;
-  width: 1px;
 `
 
 const StyledCheckbox = styled.div`
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: ${props => (props.checked ? 'salmon' : 'papayawhip')}
-  border-radius: 3px;
-  transition: all 150ms;
-
-  ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 3px pink;
-  }
+  width: 12px;
+  height: 12px;
+  background: #EEF0EA;
+  border-radius: 2.5px;
+  border: 1px solid darkgray;
 
   ${Icon} {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')}

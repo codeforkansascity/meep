@@ -13,6 +13,7 @@ class CheckBox extends React.Component {
         this.setState({checked: event.target.checked});
     }
 
+    // Collapse the labels and projectTypeMarker back into CheckBoxRow
     render() {
         return (
             <div>
