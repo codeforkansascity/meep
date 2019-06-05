@@ -41,8 +41,8 @@ const StyledCheckbox = styled.div`
   }
 `
 
-const CheckBoxRow = ({ Label, ProjectType, checked, toggleView }) => (
-    <CheckboxContainer>
+const CheckBoxRow = ({ Label, ProjectType, checked, toggleView, hoverEnter, hoverLeave}) => (
+    <CheckboxContainer id={Label} onMouseEnter={hoverEnter} onMouseLeave={hoverLeave}>
         <HiddenCheckbox checked={checked} onChange={toggleView} />
         <StyledCheckbox checked={checked}>
             <Icon viewBox="0 0 24 24">
