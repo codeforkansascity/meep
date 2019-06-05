@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;
+  cursor: pointer;
 `
 
 const Icon = styled.svg`
@@ -41,8 +42,8 @@ const StyledCheckbox = styled.div`
   }
 `
 
-const CheckBoxRow = ({ Label, ProjectType, checked, toggleView, hoverEnter, hoverLeave}) => (
-    <CheckboxContainer id={Label} onMouseEnter={hoverEnter} onMouseLeave={hoverLeave}>
+const CheckBoxRow = ({ Label, ProjectType, checked, toggleView}) => (
+    <CheckboxContainer>
         <HiddenCheckbox checked={checked} onChange={toggleView} />
         <StyledCheckbox checked={checked}>
             <Icon viewBox="0 0 24 24">
