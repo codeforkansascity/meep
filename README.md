@@ -44,16 +44,21 @@ This is what we want to replicate: https://preview.uxpin.com/3ebaab4bf3defd232e9
 3. Clone the repo to your machine. See [here](https://help.github.com/articles/cloning-a-repository/#platform-all) for details on how to do this.
 4. Create a branch whose name adheres to the following format: {{issue number}}_{{name of issue}}. For example, if you are working on issue number 4, which is titled "Style super awesome widget", you might name your branch 4_style_widget. For more info on working with branches in git, see [here](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging).
 <<<<<<< HEAD
+<<<<<<< HEAD
 5. Do some work on your branch.
 6. Push your branch back to github and open a pull request. See [here](https://help.github.com/articles/pushing-to-a-remote/) for details. A project owner will review your changes and either approve a merge, or leave comments on what needs to be done before your changes can be merged.
 =======
+=======
+>>>>>>> e65ea6572124a67faafd54137d4f35bd25e26cc8
 5. Do some work on your branch. 
 6. Push your branch back to github and open a pull request. See [here](https://help.github.com/articles/pushing-to-a-remote/) for details. A project owner will review your changes and either approve a merge, or leave comments on what needs to be done before your changes can be merged. 
-
 
 ## Member
 Piero A. Pretto : piero.devops@gmail.com
 Wes Galbraith : galbwe92@gmail.com
+<<<<<<< HEAD
 
  
 >>>>>>> origin
+=======
+>>>>>>> e65ea6572124a67faafd54137d4f35bd25e26cc8
