@@ -145,13 +145,16 @@ const ProximitySliderTicks = props => {
         ></div>
     )
   };
+  const tickSpacing = () => { 
+    return labels.slice(0, -1).map(label => renderTickSpacing()); 
+  };
   const renderTickLabel = label => {
     return <div className="tick-label">{label}</div>
   };
   return (
     <React.Fragment>
     <div className="proximity-slider-ticks">
-      {labels.slice(0, -1).map(label => renderTickSpacing())}
+      {tickSpacing()}
     </div>
     <div className="proximity-slider-tick-labels">
       {labels.map(label => renderTickLabel(label))}
