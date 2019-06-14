@@ -12,7 +12,7 @@ services:
       - api
 
   api:
-    image: meepmec/meep-api:enable-cors
+    image: metroenergy/meep-api:34-enable-cors
     ports:
       - 8000:8000
     depends_on:
