@@ -1,7 +1,7 @@
 ## Available Scripts
 
 In the project directory, you can run:
-### `npm install`
+
 ### `yarn run dev-server`
 
 Runs the app in the development mode.<br>

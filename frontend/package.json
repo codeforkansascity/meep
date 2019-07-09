@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server --host 0.0.0.0",
+    "dev-image": "docker image build -t meep:frontend .",
+    "dev-container": "docker container run --rm -p 8081:8080 -v $(pwd)/src:/app/src -v $(pwd)/public/images:/app/public/images --name meep meep:frontend"
   },
   "dependencies": {
     "autoprefixer": "^9.4.9",

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public/images:/app/public/images
+    links:
+      - api
+
+  api:
+    image: metroenergy/meep-api:34-enable-cors
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - DEV_DATABASE_URL=postgres://meep:supersafe@db:5432/meep_api
+    links:
+      - db
+
+  db:
+    image: postgres:11.3
+    environment:
+      - POSTGRES_USER=meep
+      - POSTGRES_PASSWORD=supersafe
+      - POSTGRES_DB=meep_api
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+
+volumes:
+    postgres_data:
