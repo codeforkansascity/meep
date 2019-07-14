@@ -1,0 +1,35 @@
+---
+version: '3.7'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - '8080:3000'
+    volumes:
+      - type: volume
+        source: app
+        target: /usr/src/app
+      - type: volume
+        source: node_modules
+        target: /usr/src/app/node_modules
+        volume:
+          nocopy: true
+    environment:
+      - NODE_ENV=dev
+    # Before you run this file for the first time, make sure
+    # you remove node_modules/ folders in your host machine
+    command: >
+      sh -c '
+      if test -d node_modules;
+      then
+        echo node_modules_exists ;
+      else
+        cp -a /tmp/node_modules /usr/src/app/;
+      fi &&
+      npm install && npm run dev-server'
+
+volumes:
+  app:
+  node_modules:
