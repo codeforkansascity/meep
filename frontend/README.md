@@ -28,11 +28,16 @@ $> docker build --pull --no-cache --force-rm -t meep-frontend -f prod.Dockerfile
 
 #### To run the production image locally
 ```
-$> docker run -it -p 8080:80 $(docker images meep-frontend -q)
+$> docker run -it -p 8080:80 $(docker images meep-frontend:latest -q)
 ```
 Visit http://localhost:8080 in your browser.
 
 #### To build a production Docker image, add this to your build script
 ```
 $> docker build --pull --no-cache --force-rm --quiet -t meep-frontend -f prod.Dockerfile .
+```
+
+#### One liner
+```
+$> docker build --pull --no-cache --force-rm -t meep-frontend -f prod.Dockerfile . && docker run -d -p 8080:80 $(docker images meep-frontend:latest -q) && curl -I http://localhost:8080
 ```
