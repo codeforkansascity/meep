@@ -16,15 +16,23 @@ docker-compose up -d
 ```
 Visit http://localhost:8080 in your browser.
 
-#### To build a production Docker image
+#### To build a production version of the Docker image locally, quickly
 ```
-$> docker build --pull --no-cache --force-rm --quiet \
-  -t meep-frontend -f prod.Dockerfile .
+$> docker build -t meep-frontend -f prod.Dockerfile .
+```
+
+#### To build a production version of the Docker image locally, cleanly
+```
+$> docker build --pull --no-cache --force-rm -t meep-frontend -f prod.Dockerfile .
 ```
 
 #### To run the production image locally
 ```
-$> docker run -it -p 8080:80 \
-  $(docker images -f label=project=meep -f label=component=frontend -q)
+$> docker run -it -p 8080:80 $(docker images meep-frontend -q)
 ```
 Visit http://localhost:8080 in your browser.
+
+#### To build a production Docker image, add this to your build script
+```
+$> docker build --pull --no-cache --force-rm --quiet -t meep-frontend -f prod.Dockerfile .
+```
