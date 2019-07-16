@@ -14,10 +14,9 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app/
 
 RUN cp -a /tmp/node_modules /usr/src/app/
-
 ENV NODE_ENV=production
-
 RUN webpack
+
 RUN npm run build
 
 FROM nginx:alpine

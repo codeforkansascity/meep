@@ -14,6 +14,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app/
 
 RUN cp -a /tmp/node_modules /usr/src/app/
+ENV NODE_ENV=dev
 RUN webpack
 
 ENV NODE_ENV=dev
