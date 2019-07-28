@@ -52,7 +52,7 @@ const CheckBoxRow = ({ Label, ProjectType, checked, toggleView}) => (
         </StyledCheckbox>
         <span style={{ marginLeft: 8 }}>{Label}</span>
         <ProjectTypeMarker FillClass={ProjectType}/> 
-    </CheckboxContainer> 
+    </CheckboxContainer>
 );
 
 export default CheckBoxRow;
