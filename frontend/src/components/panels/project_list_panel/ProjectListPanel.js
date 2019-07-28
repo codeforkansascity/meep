@@ -2,17 +2,10 @@ import React from 'react';
 import Header from '../../helpers/Header';
 import BackToLink from '../../helpers/BackToLink';
 import ProjectCard from './ProjectCard';
-import axios from 'axios';
 
 class ProjectListPanel extends React.Component {
     constructor(props) {
         super(props);
-    }
-    componentDidMount() {
-        axios.get(`http://localhost:8000/projects`)
-            .then(res => {
-                console.log(res.data);
-            });
     }
     handleProjectCardClick = () => {
         this.props.history.push('/details');
