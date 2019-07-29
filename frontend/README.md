@@ -2,6 +2,7 @@
 
 This application can be run locally with webpack-dev-server or via a docker container.  Both methods below will result in a web site running in development mode available at http://localhost:8080
 
+
 #### To run locally via webpack-dev-server:
 ```
 $> npm install
