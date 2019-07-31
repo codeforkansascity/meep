@@ -18,10 +18,21 @@ const dotStyle = {
     'margin-left': '-1px',
 };
 
-const ProximitySlider = () => (
-    <div className="my-1">
-        <Slider min={1} max={20} step={1} marks={marks} dotStyle={dotStyle} defaultValue={10} />
-    </div>
-);
+class ProximitySlider extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			minValue: 1,
+			maxValue: 20,
+		}
+	}
+	render() {
+		return (
+			<div>
+				<Slider min={this.state.minValue} max={this.state.maxValue} step={1} marks={marks} dotStyle={dotStyle} defaultValue={10} />
+			</div>
+		);
+	}
+}
 
 export default ProximitySlider;
