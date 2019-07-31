@@ -19,10 +19,28 @@ const dotStyle = {
     'margin-left': '-1px',
 };
 
-const DateRangeSlider = () => (
-	    <div>
-	    	<Range min={2000} max={2018} marks={marks} dots={true} dotStyle={dotStyle} defaultValue={[2015, 2018]}/>
-	    </div>
-);
+class DateRangeSlider extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			minValue: 2000,
+			maxValue: 2018,
+
+		}
+	}
+	render() {
+		return (
+		    <div>
+		    	<Range min={this.state.minValue} max={this.state.maxValue} marks={marks} dots={true} dotStyle={dotStyle} defaultValue={[2015, 2018]}/>
+		    </div>
+			)
+	}
+}
+
+// const DateRangeSlider = () => (
+// 	    <div>
+// 	    	<Range min={2000} max={2018} marks={marks} dots={true} dotStyle={dotStyle} defaultValue={[2015, 2018]}/>
+// 	    </div>
+// );
 
 export default DateRangeSlider;
