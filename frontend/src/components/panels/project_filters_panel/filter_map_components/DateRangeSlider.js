@@ -37,10 +37,4 @@ class DateRangeSlider extends React.Component {
 	}
 }
 
-// const DateRangeSlider = () => (
-// 	    <div>
-// 	    	<Range min={2000} max={2018} marks={marks} dots={true} dotStyle={dotStyle} defaultValue={[2015, 2018]}/>
-// 	    </div>
-// );
-
 export default DateRangeSlider;
