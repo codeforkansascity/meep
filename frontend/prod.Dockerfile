@@ -15,7 +15,7 @@ COPY . /usr/src/app/
 
 RUN cp -a /tmp/node_modules /usr/src/app/
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=8888
 RUN webpack
 
 RUN npm run build

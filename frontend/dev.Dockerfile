@@ -15,8 +15,8 @@ COPY . /usr/src/app/
 
 RUN cp -a /tmp/node_modules /usr/src/app/
 ENV NODE_ENV=dev
-ENV PORT=3000
+ENV PORT=8080
 RUN webpack
 
 CMD [ “/usr/local/bin/npm”, “run”, "dev-server" ]
-EXPOSE 3000
+EXPOSE 8080
