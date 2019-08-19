@@ -1,13 +1,55 @@
+## Making Changes To Project
+
+When working on an issue, relevant code should be assigned to a feature branch. 
+
+```
+$> git checkout -b feature/<description of issue>
+```
+
+#### Creating new components:
+
+When creating a new component, A sub folder and js file(s) should be generated to maintain that code inside the `frontend/src/components` folder.
+
+#### Adding styling:
+
+When adding new css styling to the project, the style class should be assign to one the scss files nested inside `frontend/src/styles` folder.
+
+
+#### Adding styling to a component inside one panel:
+
+```
+frontend/src/styles/panels/<panel_name>.scss
+```
+
+#### Adding styling to a component nested in multiple panels:
+
+```
+frontend/src/styles/panels/_global.scss
+```
+
+#### Adding styling to a global helper component:
+
+```
+frontend/src/styles/helper/<helper_name>.scss
+```
+
+#### Adding styling to the entire project:
+
+```
+frontend/src/styles/body/_body.scss
+```
+
+
 ## Available Scripts
 
-This application can be run locally with webpack-dev-server or via a docker container.  Both methods below will result in a web site running in development mode available at http://localhost:8080
+This application can be run locally with webpack-dev-server or via a docker container.  Both methods below will result in a web site running in development mode available at http://localhost:8888
 
 #### To run locally via webpack-dev-server:
 ```
 $> npm install
 $> npm run dev-server
 ```
-Visit http://localhost:8080 in your browser.
+Visit http://localhost:8888 in your browser.
 
 #### To run locally via Docker container
 Note: Give it some time to start up; it has to install all the dependencies
