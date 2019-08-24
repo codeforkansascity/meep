@@ -37,8 +37,8 @@ class ProximitySlider extends React.Component {
 		this.state = {
 			minValue: 1,
 			maxValue: 20,
+			defaultValue: 10,
 		}
-		this.marks = this.marks.bind(this);
 	}
 	marks(minValue, maxValue) {
 	  let miLabels = [];
@@ -61,7 +61,7 @@ class ProximitySlider extends React.Component {
 					step={1}
 					marks={this.marks(this.state.minValue, this.state.maxValue)}
 					dotStyle={dotStyle}
-					defaultValue={10}
+					defaultValue={this.state.defaultValue}
 					handle={handle}
 				/>
 			</div>
