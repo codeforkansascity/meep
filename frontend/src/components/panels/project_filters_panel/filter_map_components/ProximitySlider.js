@@ -41,7 +41,6 @@ class ProximitySlider extends React.Component {
 		this.marks = this.marks.bind(this);
 	}
 	marks(minValue, maxValue) {
-		console.log(minValue);
 	  let miLabels = [];
 	  for (let i = minValue; i <= maxValue; i++ ) {
 	    if (i == minValue || i == maxValue || i % 5 == 0) {
@@ -50,7 +49,6 @@ class ProximitySlider extends React.Component {
 	  }
 	  return miLabels.reduce(function(result, year) {
 	    result[year] = year.toString();
-	    console.log(result);
 	    return result;
 	  }, {});
 	}
