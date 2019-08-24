@@ -17,11 +17,12 @@ const dotStyle = {
 };
 
 const handle = (props) => {
-  const { value, index, key, className, disabled, offset, prefixCls} = props;
+  const { value, dragging, index, key, className, disabled, offset, prefixCls} = props;
   return (
     <Tooltip
       prefixCls="rc-slider-tooltip"
       overlay={value}
+      visible={dragging}
       placement="top"
       key={index}
     >
