@@ -12,8 +12,8 @@ const dotStyle = {
 	'bottom': '-10px',
     'width': '1px',
     'border': '1px solid #e9e9e9',
-    'border-radius': '0%',
-    'margin-left': '-1px',
+    'borderRadius': '0%',
+    'marginLeft': '-1px',
 };
 
 const handle = (props) => {
