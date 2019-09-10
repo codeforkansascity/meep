@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectTypeMarker from '../../../helpers/projectTypeMarker';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const CheckboxContainer = styled.div`
   display: inline-block;
@@ -45,7 +45,7 @@ const StyledCheckbox = styled.div`
 const CheckBoxRow = ({ Label, ProjectType, checked, toggleView}) => (
     <CheckboxContainer>
         <HiddenCheckbox checked={checked} onChange={toggleView} />
-        <StyledCheckbox checked={checked}>
+        <StyledCheckbox checked={checked} className="filter-checkbox">
             <Icon viewBox="0 0 24 24">
                 <polyline points="20 6 9 17 4 12" />
             </Icon>
