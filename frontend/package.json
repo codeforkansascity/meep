@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
-    "dev-server": "webpack-dev-server --port 8888"
+    "dev-server": "webpack-dev-server"
   },
   "dependencies": {
     "autoprefixer": "^9.4.9",
