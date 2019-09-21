@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { WelcomePanel, ProjectListPanel, ProjectFiltersPanel, ProjectDetailsPanel }  from './components/panels/index';
 import { Route, Switch } from 'react-router-dom';
-import {  MapContainer  } from './components/panels/map_panel/MapPanelContainer';
+import MapContainer from './components/panels/map_panel/MapPanelContainer';
 
 class App extends Component {
   render() {
