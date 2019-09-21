@@ -5,9 +5,7 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
-    "dev-server": "webpack-dev-server --host 0.0.0.0",
-    "dev-image": "docker image build -t meep:frontend .",
-    "dev-container": "docker container run --rm -p 8081:8080 -v $(pwd)/src:/app/src -v $(pwd)/public/images:/app/public/images --name meep meep:frontend"
+    "dev-server": "webpack-dev-server --port 8888"
   },
   "dependencies": {
     "autoprefixer": "^9.4.9",
@@ -21,7 +19,7 @@
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
     "live-server": "^1.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.11.0",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
     "rc-slider": "^8.6.13",

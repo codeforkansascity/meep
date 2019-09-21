@@ -2,9 +2,11 @@ version: '3'
 
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 8888:8080
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public/images:/app/public/images
