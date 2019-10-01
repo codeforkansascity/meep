@@ -1,30 +1,38 @@
-import { GoogleApiWrapper, Map } from 'google-maps-react';
 import React, { Component } from 'react';
+import { withScriptjs, withGoogleMap, GoogleMap, Circle } from "react-google-maps"
 
-const mapStyles = {
-    width: '100%',
-    height: '100%',
-  };
+// const GoogleMapsAPIKey = paste API key here
 
-export class MapContainer extends Component {
+const circle = {
+    center: {lat: 49.25, lng: -123.1},
+    population: 603502
+  }
+
+const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    defaultZoom={4}
+    defaultCenter={circle.center}>
+        <Circle
+            strokeColor={'#FF0000'}
+            strokeOpacity={0.8}
+            strokeWeight={2}
+            fillColor={'#FF0000'}
+            fillOpacity={0.35}
+            center={circle.center}
+            radius={Math.sqrt(circle.population) * 100}>
+        </Circle>
+  </GoogleMap>
+));
+
+export default class MapContainer extends Component {
     render() {
-        if(!this.props.google) {
-            return <div ref='map'>Loading map from API...</div>
-        } else {
-            return (
-                <Map
-                    style={mapStyles}
-                    google={this.props.google}
-                    initialCenter={{
-                        lat: 40.854885,
-                        lng: -88.081807
-                    }}
-                    zoom={15}></Map>
-            )
-        }
+        return (
+            <MyMapComponent
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPIKey}`}
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `400px` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+            />
+        )
     } 
 }
- 
-export default GoogleApiWrapper({
-    // apiKey: paste API Key here
-})(MapContainer);
