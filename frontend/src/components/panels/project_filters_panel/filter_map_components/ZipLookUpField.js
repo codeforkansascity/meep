@@ -4,7 +4,7 @@ import FormControl from 'react-bootstrap/FormControl';
 
 const ZipLookUpField = () => (
     <InputGroup size="sm" className="my-1">
-        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+        <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" defaultValue="64105"/>
     </InputGroup>
 );
 
