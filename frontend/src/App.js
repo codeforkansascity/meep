@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {WelcomePanel, ProjectListPanel, ProjectFiltersPanel, ProjectDetailsPanel}  from './components/panels/index';
-import {Route, Switch} from 'react-router-dom';
+import { WelcomePanel, ProjectListPanel, ProjectFiltersPanel, ProjectDetailsPanel }  from './components/panels/index';
+import { Route, Switch } from 'react-router-dom';
+import {  MapContainer  } from './components/panels/map_panel/MapPanelContainer';
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
               </Switch>
             </section>
             <section className="col-8" id="map_container">
-              <img src="images/static_map.png" id="placeholder_map_img" className="img-fluid" alt="Responsive image"/>
+              <MapContainer/>
             </section>
           </div>
         </div>
