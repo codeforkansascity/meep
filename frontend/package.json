@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
-    "dev-server": "webpack-dev-server --port 8888"
+    "dev-server": "webpack-dev-server"
   },
   "dependencies": {
     "autoprefixer": "^9.4.9",
@@ -18,17 +18,18 @@
     "babel-preset-react": "6.24.1",
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
+    "google-maps-react": "^2.0.2",
     "live-server": "^1.2.0",
     "node-sass": "^4.11.0",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
+    "rc-slider": "^8.6.13",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.3",
     "react-router-dom": "4.1.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "validator": "8.0.0",
     "webpack": "3.1.0",
     "webpack-dev-server": "2.5.1"
   }
