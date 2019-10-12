@@ -1,12 +1,16 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 import ProjectTypeMarker from '../../../helpers/projectTypeMarker';
 
-const CheckBoxRow = ({ Label, ProjectType }) => (
-    <div className="form-check">
-        <input type="checkbox" className="form-check-input"/>
-        <label title={Label} type="checkbox" className="form-check-label">{Label}</label>
-        <ProjectTypeMarker FillClass={ProjectType}/>
+const CheckBoxRow = ({ Label, ProjectType, checked, toggleView }) => (
+    <div id="checkbox-container">
+        <input className="hidden-checkbox" type="checkbox" checked={checked} onChange={toggleView} />
+        <div className="styled-checkbox">
+            <svg className={`icon ${checked ? "show-checked" : "hide-checked"}`} viewBox="0 0 24 24" >
+                <polyline points="20 6 9 17 4 12" />
+            </svg>
+        </div>
+        <span className="style-span">{Label}</span>
+        <ProjectTypeMarker FillClass={ProjectType}/> 
     </div>
 );
 
