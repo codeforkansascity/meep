@@ -19,6 +19,48 @@
             }
         }
     }
+}
+
+#checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    .hidden-checkbox{
+        border: 0;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 0.0625rem;
+        margin: -0.0625rem;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+    }
+    .styled-checkbox{
+        display: inline-block;
+        width: 0.75rem;
+        height: 0.75rem;
+        background: #EEF0EA;
+        border-radius: 0.15625rem;
+        border: 0.0625rem solid darkgray;
+    }
+    .icon {
+        fill: none;
+        stroke: #5B5A5E;
+        stroke-width: 0.40625rem;
+        width: 0.75rem;
+        padding-bottom: 0.5rem;
+        padding-right: 0.125rem;
+    }
+    .style-span{
+        margin-left: 0.5rem;
+    }
+    .show-checked {
+        visibility: visible;
+    }
+    .hide-checked {
+        visibility: hidden;
     .rc-slider-track {
         background-color: #509646;
     }
