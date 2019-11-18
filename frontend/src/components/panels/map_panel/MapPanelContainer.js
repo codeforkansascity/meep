@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Circle, Marker } from "react-google-maps"
 const GoogleMapsAPIKey = 'AIzaSyC1o7P7OG08az4tlbCjLwN-u16HKAR2t3Q';
 
-console.log(Circle);
-
 const circle = {
     center: {lat: 39.0997, lng: -94.5786}
-  }
+}
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
