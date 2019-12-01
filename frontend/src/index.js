@@ -1,18 +1,30 @@
+//import custom sass
+import './styles/main.scss';
+// Import bootstrap css
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import React & Redux
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import Reducers from './store/Reducers';
+import configureStore from './store/configure_store';
+import selectProjectLocations from './selectors/locations';
+import { MeepService } from './services/meep_service';
 
 // config redux store
-const store = createStore(Reducers);
+const store = configureStore();
+const meep_service = new MeepService();
 
-//import custom sass
-import './styles/main.scss';
+meep_service.getLocations().then(data => {
+    store.dispatch({ type: 'ADD_LOCATIONS', locations: data });
+});
 
-// Import bootstrap css
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+const state = store.getState();
+const visibleProjects = selectProjectLocations(state.locations, state.filters);
+
+console.log('visibleProjects', visibleProjects);
 
 const app = (
     <Provider store={store}>
