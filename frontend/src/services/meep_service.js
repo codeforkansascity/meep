@@ -35,7 +35,7 @@ export class MeepService {
     }
 
 
-    getProjectDetailsById() {
+    getProjectDetailsById(id) {
         return new Promise((resolve, reject) => {
             axios.get(`${REMOTE_API}/projects/${id}/detail`)
             .then((res) => { resolve(res.data) })

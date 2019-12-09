@@ -9,22 +9,16 @@ import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
 import { Provider } from "react-redux";
 import configureStore from './store/configure_store';
-import selectProjectLocations from './selectors/locations';
 import { MeepService } from './services/meep_service';
+import { addLocations } from './actions/locations';
 
 // config redux store
 const store = configureStore();
 const meep_service = new MeepService();
 
 meep_service.getLocations().then(data => {
-    store.dispatch({ type: 'ADD_LOCATIONS', locations: data });
+    store.dispatch(addLocations(data));
 });
-
-
-const state = store.getState();
-const visibleProjects = selectProjectLocations(state.locations, state.filters);
-
-console.log('visibleProjects', visibleProjects);
 
 const app = (
     <Provider store={store}>

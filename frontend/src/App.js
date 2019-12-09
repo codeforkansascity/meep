@@ -1,9 +1,9 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import {WelcomePanel, ProjectListPanel, ProjectFiltersPanel, ProjectDetailsPanel}  from './components/panels/index';
 import {Route, Switch} from 'react-router-dom';
-import { connect } from 'react-redux';
+import MapContainer from './components/panels/map_panel/MapPanelContainer';
 
-const App = (props) => {
+const App = () => {
   return (
     <div id="app_container">
       <div className="container-fluid">
@@ -17,7 +17,7 @@ const App = (props) => {
             </Switch>
           </section>
           <section className="col-8" id="map_container">
-            <img src="images/static_map.png" id="placeholder_map_img" className="img-fluid" alt="Responsive image"/>
+            <MapContainer/>
           </section>
         </div>
       </div>
@@ -25,10 +25,4 @@ const App = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-      locations: state.locations
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

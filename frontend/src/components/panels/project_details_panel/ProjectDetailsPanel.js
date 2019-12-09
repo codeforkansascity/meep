@@ -4,19 +4,23 @@ import Header from '../../helpers/Header';
 import SubHeader from '../../helpers/SubHeader';
 import ActionButton from '../../helpers/ActionButton';
 import ImpactStatRow from './ImpactStatRow';
+import { connect } from 'react-redux';
 
 class ProjectDetailsPanel extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div id="project_details_container">
                 <BackToLink Route="/projects" Text="Back to projects"/>
-                <div class="row">
-                    <div class="col-6">
-                        <img class="project-details-img" src="images/project_placeholder.png"/>
+                <div className="row">
+                    <div className="col-6">
+                        <img className="project-details-img" src="images/project_placeholder.png"/>
                     </div>
-                    <div class="col-6">
-                        <p>Project Name</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna.</p>
+                    <div className="col-6">
+                        <p>{this.props.project.name}</p>
+                        <p>{this.props.project.details}</p>
                     </div>
                     <Header Text="Impact Of This Project"/>
                     <div className="row">
@@ -72,4 +76,9 @@ class ProjectDetailsPanel extends Component {
     }
 }
 
-export default ProjectDetailsPanel;
+
+const mapStateToProps = (state) => {
+    return { project: state.selected_project || {} }
+};
+
+export default connect(mapStateToProps)(ProjectDetailsPanel);
