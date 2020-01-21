@@ -8,6 +8,7 @@ const filtersReducerDefaultState = {
 export default (state = filtersReducerDefaultState, action) => {
   switch (action.type) {
     case 'FILTER_BY_RANGE':
+      console.log(action.range);
       return {
         ...state,
         range: action.range

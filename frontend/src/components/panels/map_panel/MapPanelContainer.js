@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { MeepService } from '../../../services/meep_service';
 import { selectProject } from '../../../actions/project_details';
 import { withRouter} from 'react-router-dom';
+import { selectProjectLocations } from '../../../selectors/locations';
 
 const GoogleMapsAPIKey = 'AIzaSyC1o7P7OG08az4tlbCjLwN-u16HKAR2t3Q';
 const meep_service = new MeepService();
@@ -13,7 +14,7 @@ const mapState = {
         strokeColor: "hsl(125, 100%, 14%)",
         fillColor:'hsl(125, 100%, 14%)',
         fillOpacity: "0.7",
-        radius: 2500,
+        radius: 500,
         strokeWeight: 1
     },
     center: {
@@ -26,7 +27,8 @@ const mapState = {
 const mapStateToProps = (state, ownProps) => {
     return { 
         ...ownProps,
-        locations: state.locations[0] || [] }
+        locations: state.locations[0] ? selectProjectLocations(state.locations[0], state.filters) : []
+    }
 };
 
 const MyMapComponent = connect(mapStateToProps)(withScriptjs(withGoogleMap((props) => {
