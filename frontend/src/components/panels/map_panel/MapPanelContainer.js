@@ -5,8 +5,8 @@ import { MeepService } from '../../../services/meep_service';
 import { selectProject } from '../../../actions/project_details';
 import { withRouter} from 'react-router-dom';
 import { selectProjectLocations } from '../../../selectors/locations';
+import { GoogleMapsAPIKey } from '../../../../private/google_maps';
 
-const GoogleMapsAPIKey = 'AIzaSyC1o7P7OG08az4tlbCjLwN-u16HKAR2t3Q';
 const meep_service = new MeepService();
 
 const mapState = {
