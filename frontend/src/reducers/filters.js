@@ -8,15 +8,19 @@ const filtersReducerDefaultState = {
 export default (state = filtersReducerDefaultState, action) => {
   switch (action.type) {
     case 'FILTER_BY_RANGE':
-      console.log(action.range);
       return {
         ...state,
         range: action.range
       };
-    case 'FILTER_BY_TYPE':
+    case 'ADD_TYPE_FILTER':
       return {
         ...state,
-        type: action.type
+        project_types: [...state.project_types, action.project_type]
+      };
+    case 'REMOVE_TYPE_FILTER':
+      return {
+        ...state,
+        project_types: state.project_types.filter(type => type !== action.project_type)
       };
     case 'FILTER_BY_START_DATE':
       return {
