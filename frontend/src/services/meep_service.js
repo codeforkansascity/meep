@@ -7,7 +7,8 @@ export class MeepService {
     getLocations() {
         return new Promise((resolve, reject) => {
             axios.get(REMOTE_API + '/location-markers')
-                .then((res) => { resolve(res.data.locationMarkers) })
+                .then((res) => { 
+                    resolve(res.data.locationMarkers) })
                 .catch((err) => { reject(err) });
         });
     }
