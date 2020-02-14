@@ -4,4 +4,5 @@ __pycache__
 app/__pycache__
 sample_data*
 schema.sql
-/node_modules
+node_modules/
+public/bundle.js
