@@ -5,4 +5,4 @@ app/__pycache__
 sample_data*
 schema.sql
 node_modules/
-public/bundle.js
+frontend/public/bundle.js
