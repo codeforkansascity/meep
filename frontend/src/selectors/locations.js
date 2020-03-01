@@ -6,7 +6,7 @@ export const selectProjectLocations = (locations, { types, startDate, endDate, r
 
       //DateRangeSlider value
       const startDateMatch = typeof startDate !== 'number' || location.startDate >= startDate;
-      const endDateMatch = typeof endDate !== 'number' || location.startDate <= endDate;
+      const endDateMatch = typeof endDate !== 'number' || location.endDate <= endDate;
       
       //Project type value
       const locationTypeMatch = !types.length || types.includes(location.project_types[0]);

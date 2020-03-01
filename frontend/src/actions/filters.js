@@ -1,5 +1,5 @@
 // FILTER_BY_RANGE
-export const setRangeFilter = (range = null) => ({
+export const setRangeFilter = (range = 25) => ({
     type: 'FILTER_BY_RANGE',
     range: parseInt(range)
 });

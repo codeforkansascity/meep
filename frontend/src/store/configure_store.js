@@ -4,8 +4,6 @@ import filtersReducer from '../reducers/filters';
 import projectsReducer from '../reducers/projects';
 import projectDetailsReducer from '../reducers/project_details';
 
-console.log(projectDetailsReducer)
-
 export default () => {
   const store = createStore(
     combineReducers({

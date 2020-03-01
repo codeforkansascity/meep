@@ -11,9 +11,15 @@ class ZipLookUpField extends React.Component {
     }
 
     setMapCenterWithZipCode = (zipcode) => {
-        meep_service.getGeoDataByZipCode(zipcode).then(data => {
-            console.log(data);
-        });
+        const isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipcode);
+
+        if(isValidZip) {
+            meep_service.getGeoDataByZipCode(zipcode).then(data => {
+                console.log(data);
+            });
+        } else {
+            console.log('invalid zipcode');
+        }
     }
 
     render() {

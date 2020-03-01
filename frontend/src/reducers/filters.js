@@ -1,5 +1,5 @@
 const filtersReducerDefaultState = {
-  range: null,
+  range: 25,
   types: [],
   startDate: null,
   endDate: null

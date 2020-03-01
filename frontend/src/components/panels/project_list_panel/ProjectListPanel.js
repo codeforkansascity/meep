@@ -25,7 +25,7 @@ class ProjectListPanel extends React.Component {
         });
     }
     render() {
-        if(this.props.projects.length) {
+        if(Array.isArray(this.props.projects) && this.props.projects.length) {
             return (
                 <div id="project_list_container">
                     <BackToLink Route="/filters" Text="Back to filters"/>
