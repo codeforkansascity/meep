@@ -31,7 +31,7 @@ This assumes that you have already installed [node](https://nodejs.org/en/).
 1. Clone the project from github ```git clone git@github.com:codeforkansascity/meep.git```
 2. Change into the ```frontend``` directory.
 3. ```npm install```
-4. ```npm run dev-server```
+4. ```npm run dev-server``` or ```yarn run dev-server```
 5. In a browser, navigate to ```http://localhost:8200```. You should see the app running.
 
 
