@@ -49,5 +49,5 @@ This is what we want to replicate: https://preview.uxpin.com/3ebaab4bf3defd232e9
 6. Push your branch back to github and open a pull request. See [here](https://help.github.com/articles/pushing-to-a-remote/) for details. A project owner will review your changes and either approve a merge, or leave comments on what needs to be done before your changes can be merged.
 
 ## Member
-Piero A. Pretto : piero.devops@gmail.com
+Piero A. Pretto : pieroprettojs@gmail.com
 Wes Galbraith : galbwe92@gmail.com
