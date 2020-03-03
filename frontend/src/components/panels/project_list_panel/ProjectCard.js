@@ -3,7 +3,7 @@ import LocationMarker from '../../helpers/locationMarker';
 
 class ProjectCard extends React.Component {
     render () {
-        const { Name, Type, Rank } = this.props;
+        const { Name, Type, Rank, StartYear } = this.props;
         return (
             <div className="project-card">
                 <div className="row">
@@ -17,10 +17,10 @@ class ProjectCard extends React.Component {
                     </div>
                     <div className="col-6 flush-left">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. consectetur adipiscing elit.</p>
-                        <p><em>2010-2018 | 3 miles</em></p>
+                        <p><em>{StartYear} | 3 miles</em></p>
                     </div>
                     <div className="col-4 flush-left">
-                        <img class="project-card-img" src="images/project_placeholder.png"/>
+                        <img className="project-card-img" src="images/project_placeholder.png"/>
                     </div>
                 </div>
                 <hr/>

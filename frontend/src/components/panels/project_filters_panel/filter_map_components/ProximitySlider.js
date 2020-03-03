@@ -1,11 +1,10 @@
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { connect } from "react-redux";
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
-
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
+import { setRangeFilter } from '../../../../actions/filters';
 const Handle = Slider.Handle;
 
 const dotStyle = {
@@ -16,34 +15,33 @@ const dotStyle = {
     'marginLeft': '-1px',
 };
 
-const handle = (props) => {
-  const { value, dragging, index, key, className, disabled, offset, prefixCls} = props;
-  return (
-    <Tooltip
-      prefixCls="rc-slider-tooltip"
-      overlay={value}
-      visible={dragging}
-      placement="top"
-      key={index}
-    >
-      <Handle value={value} index={index} key={key} className={className} disabled={disabled} offset={offset} prefixCls={prefixCls} />
-    </Tooltip>
-  );
+const displayProximityValueToolTip = (sliderProps) => {
+	const { value, dragging, index, key, className, disabled, offset, prefixCls } = sliderProps;
+	return (
+		<Tooltip
+			prefixCls="rc-slider-tooltip"
+			overlay={value}
+			visible={dragging}
+			placement="top"
+			key={index}>
+			<Handle value={value} index={index} key={key} className={className} disabled={disabled} offset={offset} prefixCls={prefixCls}/>
+		</Tooltip>
+	);
 };
 
 class ProximitySlider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minValue: 1,
-			maxValue: 20,
-			defaultValue: 10,
+			minValue: 10,
+			maxValue: 100,
+            steps: 10
 		}
 	}
 	marks(minValue, maxValue) {
 	  let miLabels = [];
 	  for (let i = minValue; i <= maxValue; i++ ) {
-	    if (i == minValue || i == maxValue || i % 5 == 0) {
+	    if (i == minValue || i == maxValue || i % this.state.steps == 0) {
 	      miLabels.push(i);
 	    }
 	  }
@@ -58,15 +56,21 @@ class ProximitySlider extends React.Component {
 				<Slider 
 					min={this.state.minValue}
 					max={this.state.maxValue}
-					step={1}
+					step={this.state.steps}
 					marks={this.marks(this.state.minValue, this.state.maxValue)}
 					dotStyle={dotStyle}
-					defaultValue={this.state.defaultValue}
-					handle={handle}
+					defaultValue={this.props.filters.range}
+					handle={displayProximityValueToolTip}
+					onChange={(value) => { this.props.dispatch(setRangeFilter(value))}}
 				/>
 			</div>
 		);
 	}
 }
+const mapStateToProps = (state) => {
+    return {
+        filters: state.filters
+    }
+}
 
-export default ProximitySlider;
+export default connect(mapStateToProps)(ProximitySlider);

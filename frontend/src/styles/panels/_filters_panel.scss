@@ -22,7 +22,6 @@
 }
 
 #checkbox-container {
-    display: inline-block;
     vertical-align: middle;
     cursor: pointer;
 
@@ -61,6 +60,12 @@
     }
     .hide-checked {
         visibility: hidden;
+    }
+}
+
+.rc-slider-with-marks {
+    margin-bottom: 2rem;
+
     .rc-slider-track {
         background-color: #509646;
     }
