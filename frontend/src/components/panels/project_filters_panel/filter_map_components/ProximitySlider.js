@@ -1,11 +1,10 @@
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { connect } from "react-redux";
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
-
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
+import { setRangeFilter } from '../../../../actions/filters';
 const Handle = Slider.Handle;
 
 const dotStyle = {
@@ -16,28 +15,26 @@ const dotStyle = {
     'marginLeft': '-1px',
 };
 
-const handle = (props) => {
-  const { value, dragging, index, key, className, disabled, offset, prefixCls} = props;
-  return (
-    <Tooltip
-      prefixCls="rc-slider-tooltip"
-      overlay={value}
-      visible={dragging}
-      placement="top"
-      key={index}
-    >
-      <Handle value={value} index={index} key={key} className={className} disabled={disabled} offset={offset} prefixCls={prefixCls} />
-    </Tooltip>
-  );
+const displayProximityValueToolTip = (sliderProps) => {
+	const { value, dragging, index, key, className, disabled, offset, prefixCls } = sliderProps;
+	return (
+		<Tooltip
+			prefixCls="rc-slider-tooltip"
+			overlay={value}
+			visible={dragging}
+			placement="top"
+			key={index}>
+			<Handle value={value} index={index} key={key} className={className} disabled={disabled} offset={offset} prefixCls={prefixCls}/>
+		</Tooltip>
+	);
 };
 
 class ProximitySlider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minValue: 5,
+			minValue: 10,
 			maxValue: 100,
-            defaultValue: 25,
             steps: 10
 		}
 	}
@@ -62,12 +59,18 @@ class ProximitySlider extends React.Component {
 					step={this.state.steps}
 					marks={this.marks(this.state.minValue, this.state.maxValue)}
 					dotStyle={dotStyle}
-					defaultValue={this.state.defaultValue}
-					handle={handle}
+					defaultValue={this.props.filters.range}
+					handle={displayProximityValueToolTip}
+					onChange={(value) => { this.props.dispatch(setRangeFilter(value))}}
 				/>
 			</div>
 		);
 	}
 }
+const mapStateToProps = (state) => {
+    return {
+        filters: state.filters
+    }
+}
 
-export default ProximitySlider;
+export default connect(mapStateToProps)(ProximitySlider);

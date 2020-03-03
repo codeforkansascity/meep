@@ -3,8 +3,6 @@ import Tooltip from 'rc-tooltip';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
-
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Handle = Slider.Handle;
 
 const dotStyle = {
@@ -15,7 +13,7 @@ const dotStyle = {
     'marginLeft': '-1px',
 };
 
-const handle = (props) => {
+const handleDateRangeChange = (props) => {
   const { value, dragging, index, key, className, disabled, offset, prefixCls} = props;
   return (
     <Tooltip
@@ -62,7 +60,7 @@ class DateRangeSlider extends React.Component {
 		    		dots={true}
 		    		dotStyle={dotStyle} 
 		    		defaultValue={this.state.defaultValue}
-		    		handle={handle}
+		    		handle={handleDateRangeChange}
 		    		/>
 		    </div>
 			)
