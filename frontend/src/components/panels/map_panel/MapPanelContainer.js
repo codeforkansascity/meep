@@ -6,6 +6,7 @@ import { selectProject } from '../../../actions/project_details';
 import { withRouter} from 'react-router-dom';
 import { selectProjectLocations } from '../../../selectors/locations';
 import { GoogleMapsAPIKey } from '../../../../private/google_maps';
+import uuid from 'uuid';
 
 const meep_service = new MeepService();
 
@@ -16,18 +17,14 @@ const mapState = {
         fillOpacity: "0.7",
         radius: 500,
         strokeWeight: 1
-    },
-    center: {
-        "lat": 39.0997,
-        "lng": -94.5786
-    },
-    zoom: 10
+    }
 }
 
 const mapStateToProps = (state, ownProps) => {
     return { 
         ...ownProps,
-        locations: state.locations[0] ? selectProjectLocations(state.locations[0], state.filters) : []
+        locations: state.locations[0] ? selectProjectLocations(state.locations[0], state.filters) : [],
+        map_state: state.map_state
     }
 };
 
@@ -42,8 +39,9 @@ const MyMapComponent = connect(mapStateToProps)(withScriptjs(withGoogleMap((prop
 
     return (
         <GoogleMap
-            defaultZoom={mapState.zoom}
-            defaultCenter={mapState.center} autoUpdate>
+            key={uuid()}
+            defaultZoom={props.map_state.zoom}
+            defaultCenter={props.map_state.center}>
             {props.locations.map(location => {
                 return <Circle
                             key={location.key}

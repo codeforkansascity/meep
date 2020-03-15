@@ -2,6 +2,8 @@ import React from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { MeepService } from '../../../../services/meep_service';
+import { setMapCenter } from '../../../../actions/map';
+import { connect } from 'react-redux';
 
 const meep_service = new MeepService();
 
@@ -15,10 +17,19 @@ class ZipLookUpField extends React.Component {
 
         if(isValidZip) {
             meep_service.getGeoDataByZipCode(zipcode).then(data => {
-                console.log(data);
+                if(data.hasOwnProperty('lat') && data.hasOwnProperty('lng')) {
+                    this.props.dispatch(setMapCenter(data));
+                    this.props.dispatch(setZipcodee(data));
+                }
             });
         } else {
             console.log('invalid zipcode');
+        }
+    }
+
+    handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            this.setMapCenterWithZipCode(e.target.value);
         }
     }
 
@@ -26,12 +37,20 @@ class ZipLookUpField extends React.Component {
         return (
             <InputGroup size="sm" className="my-1">
                 <FormControl 
-                    aria-label="Small" 
-                    aria-describedby="inputGroup-sizing-sm"
+                    aria-label="zipcode lookup" 
+                    defaultValue={this.props.zipcode}
+                    onKeyDown={(e) => this.handleKeyDown(e)}
                     onBlur={(e) => this.setMapCenterWithZipCode(e.target.value)}/>
             </InputGroup>
         );
     }
 }
 
-export default ZipLookUpField;
+const mapStateToProps = (state, ownProps) => {
+    return { 
+        ...ownProps,
+        zipcode: state.filters.zipcode
+    }
+};
+
+export default connect(mapStateToProps)(ZipLookUpField);

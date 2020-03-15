@@ -1,5 +1,5 @@
 /**
- * is One Point within Another
+ * determines if a location is within proximity of the point on the map
  * @param point {Object} {latitude: Number, longitude: Number}
  * @param interest {Object} {latitude: Number, longitude: Number}
  * @param miles {Number} // miles from point
