@@ -11,6 +11,7 @@ export const setTypeFilter = (project_type = null) => ({
     project_type: project_type
 });
 
+// SET_ZIPCODE
 export const setZipCode = (zipcode) => ({
     type: 'SET_ZIPCODE',
     zipcode: parseInt(zipcode)
