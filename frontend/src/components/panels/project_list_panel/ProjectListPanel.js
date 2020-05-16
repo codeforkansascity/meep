@@ -3,6 +3,7 @@ import Header from '../../helpers/Header';
 import BackToLink from '../../helpers/BackToLink';
 import ProjectCard from './ProjectCard';
 import { connect } from 'react-redux';
+import firebase from '../../../firebase.js';
 import { MeepService } from '../../../services/meep_service';
 import { addProjects } from '../../../actions/projects';
 import { Link } from 'react-router-dom';
@@ -13,8 +14,19 @@ const meep_service = new MeepService();
 class ProjectListPanel extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            items: []
+        }
     }
     componentDidMount() {
+        const projectsRef = firebase.database().ref('projects');                
+        projectsRef.on('value', (snapshot) => {                                 
+            console.log(snapshot.val());                                        
+            let projects = snapshot.val();
+            this.setState({
+               items: projects 
+            }); 
+        });
         meep_service.getProjects().then(data => {
             this.props.dispatch(addProjects(data));
         });
@@ -46,7 +58,18 @@ class ProjectListPanel extends React.Component {
                 </div>
             );
         } else {
-            return <p>Loading</p>
+            return (
+                <ul>
+                    {this.state.items.map((item) => {
+                        return (
+                            <li key={item.id}>
+                                <h3>{item.name}</h3>
+                                <p>{item.year}</p>
+                            </li>
+                        )
+                    })}
+                </ul>
+            )
         }
     }
 };
