@@ -21,7 +21,6 @@ class ProjectListPanel extends React.Component {
     componentDidMount() {
         const projectsRef = firebase.database().ref('projects');                
         projectsRef.on('value', (snapshot) => {                                 
-            console.log(snapshot.val());                                        
             let projects = snapshot.val();
             this.setState({
                items: projects 
