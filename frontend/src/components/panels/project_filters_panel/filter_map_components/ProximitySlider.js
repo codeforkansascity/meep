@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import { setRangeFilter } from '../../../../actions/filters';
+import { setMapZoom } from '../../../../actions/map';
 const Handle = Slider.Handle;
 
 const dotStyle = {
@@ -33,11 +34,12 @@ class ProximitySlider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minValue: 10,
-			maxValue: 100,
-            steps: 10
+			minValue: 5,
+			maxValue: 50,
+            steps: 5
 		}
 	}
+
 	marks(minValue, maxValue) {
 	  let miLabels = [];
 	  for (let i = minValue; i <= maxValue; i++ ) {
@@ -50,6 +52,12 @@ class ProximitySlider extends React.Component {
 	    return result;
 	  }, {});
 	}
+
+	handleProximityChange = (value) => {
+		this.props.dispatch(setRangeFilter(value));
+		this.props.dispatch(setMapZoom(value));
+	}
+
 	render() {
 		return (
 			<div>
@@ -61,7 +69,7 @@ class ProximitySlider extends React.Component {
 					dotStyle={dotStyle}
 					defaultValue={this.props.filters.range}
 					handle={displayProximityValueToolTip}
-					onChange={(value) => { this.props.dispatch(setRangeFilter(value))}}
+					onChange={(value) => { this.handleProximityChange(value)}}
 				/>
 			</div>
 		);

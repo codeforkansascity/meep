@@ -1,5 +1,6 @@
 const filtersReducerDefaultState = {
   range: 20,
+  zipcode: 64106,
   types: [],
   startDate: null,
   endDate: null
@@ -31,6 +32,11 @@ export default (state = filtersReducerDefaultState, action) => {
       return {
         ...state,
         endDate: action.end_date
+      };
+    case 'SET_ZIPCODE': 
+      return {
+        ...state,
+        zipcode: action.zipcode
       };
     default:
       return state;

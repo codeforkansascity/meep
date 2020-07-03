@@ -10,3 +10,9 @@ export const setTypeFilter = (project_type = null) => ({
     type: project_type ? 'ADD_TYPE_FILTER' : 'REMOVE_TYPE_FILTER',
     project_type: project_type
 });
+
+// SET_ZIPCODE
+export const setZipCode = (zipcode) => ({
+    type: 'SET_ZIPCODE',
+    zipcode: parseInt(zipcode)
+});

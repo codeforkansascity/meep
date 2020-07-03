@@ -37,7 +37,6 @@ export class MeepService {
         });
     }
 
-
     getProjectDetailsById(id) {
         return new Promise((resolve, reject) => {
             axios.get(`${REMOTE_API}/projects/${id}/detail`)
@@ -49,7 +48,13 @@ export class MeepService {
     getGeoDataByZipCode(zipcode) {
         return new Promise((resolve, reject) => {
             axios.get(`${GEODATA_API}?address=${zipcode}&key=${GoogleMapsAPIKey}`)
-            .then((res) => { resolve(res.data) })
+            .then((res) => {
+                const location_data = (res.data.results.length && res.data.results[0].hasOwnProperty('geometry')) ? 
+                      res.data.results[0].geometry.location :
+                      {};
+
+                resolve(location_data);
+            })
             .catch((err) => { reject(err) });
         });
     }
