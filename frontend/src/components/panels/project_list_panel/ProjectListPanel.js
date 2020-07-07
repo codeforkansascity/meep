@@ -36,40 +36,28 @@ class ProjectListPanel extends React.Component {
         });
     }
     render() {
-        if(Array.isArray(this.props.projects) && this.props.projects.length) {
-            return (
-                <div id="project_list_container">
-                    <BackToLink Route="/filters" Text="Back to filters"/>
-                    <Header Text="Project That Match Your Search"/>
-                    <div className="project-list">
-                        {this.props.projects.map(project => {
-                            return <Link to="/details" key={project.key}>
-                                        <ProjectCard
-                                            onClick={() => this.dispatchProjectSummary(project.project_id)}
-                                            key={project.key}
-                                            Name={project.name} 
-                                            StartYear={project.year}
-                                            Type="infrastructure" 
-                                            Rank={project.project_id}/>
-                                   </Link>
-                        })}
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <ul>
+        return (
+            <div id="project_list_container">
+                <BackToLink Route="/filters" Text="Back to filters"/>
+                <Header Text="Projects That Match Your Search"/>
+                <div className="project-list">
                     {this.state.items.map((item) => {
                         return (
-                            <li key={item.id}>
-                                <h3>{item.name}</h3>
-                                <p>{item.year}</p>
-                            </li>
+                            <Link to="/details" key={item.id}>
+                                <ProjectCard
+                                    onClick={() => this.dispatchProjectSummary(item.id)}
+                                    key={item.id}
+                                    Name={item.name}
+                                    StartYear={item.year}
+                                    Type="Infrastructure"
+                                    Rank={item.id}
+                                />
+                            </Link>
                         )
                     })}
-                </ul>
-            )
-        }
+                </div>
+            </div>
+        )
     }
 };
 
