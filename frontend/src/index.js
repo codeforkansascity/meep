@@ -2,6 +2,7 @@
 import './styles/main.scss';
 // Import bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@babel/polyfill'
 
 // Import React & Redux
 import React from 'react';
@@ -16,10 +17,10 @@ import { addLocations } from './actions/locations';
 const store = configureStore();
 const meep_service = new MeepService();
 
-meep_service.getLocations().then(data => {
-    store.dispatch(addLocations(data));
-});
-
+meep_service.getLocations()
+    .then(data => store.dispatch(addLocations(data)))
+    .catch(err => console.error(err))
+ 
 const app = (
     <Provider store={store}>
         <AppRouter/>

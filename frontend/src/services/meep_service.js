@@ -1,61 +1,51 @@
-const REMOTE_API = "http://www.meepmetroenergy.xyz:18773";
-const GEODATA_API = "https://maps.googleapis.com/maps/api/geocode/json";
-import { GoogleMapsAPIKey } from "../../private/google_maps";
+import config from '../config.json'
 import axios from 'axios';
 
+
+console.log(config.MEEP_API)
+
+async function getAPI(url) {
+    try {
+        const res = await axios.get(url)
+        console.log(`API [${url}]: ${JSON.stringify(res.data)}`)
+        return res.data
+    } catch (err) {
+        return console.error(err)
+    }
+}
+
+
 export class MeepService {
-    getLocations() {
-        return new Promise((resolve, reject) => {
-            axios.get(REMOTE_API + '/location-markers')
-                .then((res) => { 
-                    resolve(res.data.locationMarkers) })
-                .catch((err) => { reject(err) });
-        });
+    async getLocations() {
+        const data = await getAPI(`${config.MEEP_API}/location-markers`);
+        return data.locationMarkers;
     }
 
-    getLocationsById(id) {
-        return new Promise((resolve, reject) => {
-            axios.get(REMOTE_API + '/locations/' + id)
-                .then((res) => { resolve(res.data) })
-                .catch((err) => { reject(err) });
-        });
+    async getLocationsById(id) {
+        const data = await getAPI(`${config.MEEP_API}/locations/${id}`)
+        return data
     }
 
-    getProjects() {
-        return new Promise((resolve, reject) => {
-            axios.get(REMOTE_API + '/projects')
-            .then((res) => { resolve(res.data.projects) })
-            .catch((err) => { reject(err) });
-        });
+    async getProjects() {
+        const data = await getAPI(`${config.MEEP_API}/projects`)
+        return data.projects
     }
 
-    getProjectSummaryById(id) {
-        return new Promise((resolve, reject) => {
-            axios.get(`${REMOTE_API}/projects/${id}/summary`)
-            .then((res) => { resolve(res.data) })
-            .catch((err) => { reject(err) });
-        });
+    async getProjectSummaryById(id) {
+        const data = await getAPI(`${config.MEEP_API}/projects/${id}/summary`)
+        return data
     }
 
-    getProjectDetailsById(id) {
-        return new Promise((resolve, reject) => {
-            axios.get(`${REMOTE_API}/projects/${id}/detail`)
-            .then((res) => { resolve(res.data) })
-            .catch((err) => { reject(err) });
-        });
+    async getProjectDetailsById(id) {
+        const data = await getAPI(`${config.MEEP_API}/projects/${id}/detail`)
+        return data
     }
 
-    getGeoDataByZipCode(zipcode) {
-        return new Promise((resolve, reject) => {
-            axios.get(`${GEODATA_API}?address=${zipcode}&key=${GoogleMapsAPIKey}`)
-            .then((res) => {
-                const location_data = (res.data.results.length && res.data.results[0].hasOwnProperty('geometry')) ? 
-                      res.data.results[0].geometry.location :
-                      {};
+    async getGeoDataByZipCode(zipcode) {
+        const data = await getAPI(`${config.GEODATA_API}?address=${zipcode}&key=${GoogleMapsAPIKey}`)
 
-                resolve(location_data);
-            })
-            .catch((err) => { reject(err) });
-        });
+        return (data.results.length && data.results[0].hasOwnProperty('geometry')) 
+            ? data.results[0].geometry.location 
+            : {}
     }
 }
