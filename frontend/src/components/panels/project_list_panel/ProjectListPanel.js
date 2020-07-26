@@ -15,12 +15,14 @@ class ProjectListPanel extends React.Component {
         super(props);
     }
     componentDidMount() {
-        const data = meep_service.getProjects()
-        this.props.dispatch(addProjects(data))
+        meep_service.getProjects()
+            .then(addProjects)
+            .then(this.props.dispatch)
     }
     dispatchProjectSummary (project_id) {
-        const data = meep_service.getProjectDetailsById(project_id)
-        this.props.dispatch(selectProject(data))
+        meep_service.getProjectDetailsById(project_id)
+            .then(selectProject)
+            .then(this.props.dispatch)
     }
     render() {
         if(Array.isArray(this.props.projects) && this.props.projects.length) {
