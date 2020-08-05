@@ -2,7 +2,8 @@
 import './styles/main.scss';
 // Import bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@babel/polyfill'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 // Import React & Redux
 import React from 'react';
