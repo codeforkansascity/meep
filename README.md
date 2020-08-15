@@ -20,7 +20,7 @@ If you haven't installed [docker](https://docs.docker.com/v17.09/engine/installa
 
 1. from the project root directory, do ```docker-compose up --build -d```
 2. Poulate the development database with ```docker container exec meep_api_1 python db_operations.py reset```. You should only need to do this the first time you run the app.  
-3. In a browser, go to ```http://localhost:8200```. You should see the frontend running.
+3. In a browser, go to ```http://localhost:8888```. You should see the frontend running.
 4. In another browser tab, go to ```http://localhost:8000/locations```. You should see a bunch of json served by the api.
 5. When you are done working on the project, do ```docker-compose down``` to shut down the containers.
 
@@ -30,9 +30,9 @@ This assumes that you have already installed [node](https://nodejs.org/en/).
 
 1. Clone the project from github ```git clone git@github.com:codeforkansascity/meep.git```
 2. Change into the ```frontend``` directory.
-3. ```npm install``` or ```yarn install```
-4. ```npm run dev-server``` or ```yarn run dev-server```
-5. In a browser, navigate to ```http://localhost:8200```. You should see the app running.
+3. ```npm install```
+4. ```npm run dev-server```
+5. In a browser, navigate to ```http://localhost:8080```. You should see the app running.
 
 
 ## Wireframe
@@ -49,5 +49,5 @@ This is what we want to replicate: https://preview.uxpin.com/3ebaab4bf3defd232e9
 6. Push your branch back to github and open a pull request. See [here](https://help.github.com/articles/pushing-to-a-remote/) for details. A project owner will review your changes and either approve a merge, or leave comments on what needs to be done before your changes can be merged.
 
 ## Member
-Piero A. Pretto : pieroprettojs@gmail.com
+Piero A. Pretto : piero.devops@gmail.com
 Wes Galbraith : galbwe92@gmail.com
