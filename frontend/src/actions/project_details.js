@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 // SELECT_PROJECT
 export const selectProject = (selected_project) => ({

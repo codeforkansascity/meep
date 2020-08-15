@@ -6,7 +6,7 @@ import { selectProject } from '../../../actions/project_details';
 import { withRouter} from 'react-router-dom';
 import { selectProjectLocations } from '../../../selectors/locations';
 import { GoogleMapsAPIKey } from '../../../../private/google_maps';
-import uuid from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 const meep_service = new MeepService();
 
