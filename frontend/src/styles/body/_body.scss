@@ -16,4 +16,20 @@ html, body {
     #map_container {
         padding: 0;
     }
+
+    /** NAVIGATION BAR */
+    nav {
+      overflow: hidden;
+      background-color: #141414;
+      width: 100%;
+      ul {
+        text-align: right;
+        list-style-type: none;
+        li {
+          display: inline;
+          color: #dbdbdb;
+          padding: 14px;
+        }
+      }
+    }
 }
