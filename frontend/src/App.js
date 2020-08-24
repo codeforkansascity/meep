@@ -6,13 +6,20 @@ import MapContainer from './components/panels/map_panel/MapPanelContainer';
 const App = () => {
   return (
     <div id="app_container">
-      <ul>
-        <li>About</li>
-        <li>Programs</li>
-        <li>Services</li>
-        <li>Resurces</li>
-        <li>Get Invovled</li>
-      </ul>
+      <section id="menu">
+        <nav>
+          <ul>
+            <li>About</li>
+            <li>Programs</li>
+            <li>Services</li>
+            <li>Resources</li>
+            <li>Get Invovled</li>
+          </ul>
+        </nav>
+      </section>
+      <section id="page_location">
+          <p>Current page location goes here</p>
+      </section>
       <div className="container-fluid">
         <div className="row">
           <section className="col-4" id="side_panel_container">

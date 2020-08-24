@@ -18,18 +18,41 @@ html, body {
     }
 
     /** NAVIGATION BAR */
-    nav {
+    #menu {
       overflow: hidden;
-      background-color: #141414;
       width: 100%;
-      ul {
-        text-align: right;
-        list-style-type: none;
-        li {
-          display: inline;
-          color: #dbdbdb;
-          padding: 14px;
+      height: 60px;
+      nav {
+        overflow: hidden;
+        background-color: #ffffff;
+        width: 100%;
+        ul {
+          text-align: right;
+          list-style-type: none;
+          padding-top: 10px;
+          padding-right: 148px;
+          li {
+            display: inline-block;
+            color: #619350;
+            padding: 10px;
+            font-size: 17px;
+            font-family: Arial;
+            font-weight: 520;
+          }
         }
       }
     }
+
+    #page_location {
+        overflow: hidden;
+        background-color: #141414;
+        width: 100%;
+        height: 45px;
+        text-align: right;
+        p {
+          display: inline-block;
+          color: #dbdbdb;
+          padding: 15px 150px 10px;
+        }
+      }
 }
