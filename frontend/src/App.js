@@ -8,6 +8,7 @@ const App = () => {
     <div id="app_container">
       <section id="menu">
         <nav>
+          <img className="metro-logo-img" src="images/metro_energy.jpeg"/>
           <ul>
             <li><a href="https://metroenergy.org/about-demo/about/" target="_blank">About</a></li>
             <li><a href="https://metroenergy.org/programs/" target="_blank">Programs</a></li>
