@@ -9,11 +9,10 @@ const App = () => {
       <section id="menu">
         <nav>
           <ul>
-            <li>About</li>
-            <li>Programs</li>
-            <li>Services</li>
-            <li>Resources</li>
-            <li>Get Invovled</li>
+            <li><a href="https://metroenergy.org/about-demo/about/" target="_blank">About</a></li>
+            <li><a href="https://metroenergy.org/programs/" target="_blank">Programs</a></li>
+            <li><a href="https://metroenergy.org/resources/" target="_blank">Resources</a></li>
+            <li><a href="https://metroenergy.org/get-involved/" target="_blank">Get Invovled</a></li>
           </ul>
         </nav>
       </section>
