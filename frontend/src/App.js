@@ -14,6 +14,8 @@ const App = () => {
             <li><a href="https://metroenergy.org/programs/" target="_blank">Programs</a></li>
             <li><a href="https://metroenergy.org/resources/" target="_blank">Resources</a></li>
             <li><a href="https://metroenergy.org/get-involved/" target="_blank">Get Invovled</a></li>
+            <li><a href="https://twitter.com/metroenergykc" target="_blank"><img className="twitter" src="images/icons/Twitter_Social_Icon_Circle_Color.png"/></a></li>
+            <li><a href="https://www.facebook.com/MetropolitanEnergyCenter/" target="_blank"><img className="facebook" src="images/icons/f_logo_RGB-Blue_58.png"/></a></li>
           </ul>
         </nav>
       </section>
