@@ -20,7 +20,6 @@ const App = () => {
         </nav>
       </section>
       <section id="page_location">
-          <p>Current page location goes here</p>
       </section>
       <div className="container-fluid">
         <div className="row">
