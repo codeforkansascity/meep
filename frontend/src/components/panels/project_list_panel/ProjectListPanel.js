@@ -19,41 +19,43 @@ class ProjectListPanel extends React.Component {
             .then(addProjects)
             .then(this.props.dispatch)
     }
-    dispatchProjectSummary (project_id) {
-        meep_service.getProjectDetailsById(project_id)
-            .then(selectProject)
-            .then(this.props.dispatch)
+
+    dispatchProjectSummary(project) {
+        meep_service.getProjectDetailsById(project.project_id).then(data => {
+            props.dispatch(selectProject(data));
+            props.history.push("/details");
+        })
     }
+
     render() {
-        if(Array.isArray(this.props.projects) && this.props.projects.length) {
+        if (Array.isArray(this.props.projects)) {
             return (
                 <div id="project_list_container">
-                    <BackToLink Route="/filters" Text="Back to filters"/>
-                    <Header Text="Project That Match Your Search"/>
+                    <BackToLink Route="/filters" Text="Back to filters" />
+                    <Header Text="Projects That Match Your Search" />
                     <div className="project-list">
                         {this.props.projects.map(project => {
-                            return <Link to="/details" key={project.key}>
-                                        <ProjectCard
-                                            onClick={() => this.dispatchProjectSummary(project.project_id)}
-                                            key={project.key}
-                                            Name={project.name} 
-                                            StartYear={project.year}
-                                            Type="infrastructure" 
-                                            Rank={project.project_id}/>
-                                   </Link>
+                            return <ProjectCard
+                                onClick={() => dispatchProjectSummary(project)}
+                                key={project.key}
+                                Name={project.name}
+                                StartYear={project.year}
+                                Type={project.type}
+                                Rank={project.project_id} />
                         })}
-                </div>
-            </div>);
+                    </div>
+                </div>);
         } else {
             return <p>Loading</p>
         }
     }
 };
 
-const mapStateToProps = (state) => {
-    return { 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        ...ownProps,
         projects: state.projects[0] || [],
-        selected_project: state.selected_project || {}
+        selected_project: () => state(selectProject(ownProps.project_id))
     }
 };
 
