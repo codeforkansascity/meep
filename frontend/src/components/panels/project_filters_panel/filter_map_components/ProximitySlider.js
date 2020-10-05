@@ -34,8 +34,8 @@ class ProximitySlider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minValue: 5,
-			maxValue: 50,
+			minValue: 1,
+			maxValue: 20,
             steps: 5
 		}
 	}
@@ -48,7 +48,7 @@ class ProximitySlider extends React.Component {
 	    }
 	  }
 	  return miLabels.reduce(function(result, year) {
-	    result[year] = year.toString();
+	    result[year] = year.toString().concat('mi');
 	    return result;
 	  }, {});
 	}
@@ -61,7 +61,7 @@ class ProximitySlider extends React.Component {
 	render() {
 		return (
 			<div>
-				<Slider 
+				<Slider
 					min={this.state.minValue}
 					max={this.state.maxValue}
 					step={this.state.steps}
