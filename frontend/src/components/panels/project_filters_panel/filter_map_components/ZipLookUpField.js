@@ -20,7 +20,7 @@ class ZipLookUpField extends React.Component {
             meep_service.getGeoDataByZipCode(zipcode).then(data => {
                 if(data.hasOwnProperty('lat') && data.hasOwnProperty('lng')) {
                     this.props.dispatch(setMapCenter(data));
-                    this.props.dispatch(setZipCode(data));
+                    this.props.dispatch(setZipCode(zipcode));
                 }
             });
         } else {
