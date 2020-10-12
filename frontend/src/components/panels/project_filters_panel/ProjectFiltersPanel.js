@@ -4,7 +4,7 @@ import SubHeader from '../../helpers/SubHeader';
 import ActionButton from '../../helpers/ActionButton';
 import StatsContainer from './area_stats_components/AreaStatsContainer';
 import BackToLink from '../../helpers/BackToLink';
-import {ProximitySlider, ZipLookUpField, DateRangeSlider, CheckBoxRow} from './filter_map_components/index';
+import { ProximitySlider, ZipLookUpField, DateRangeSlider, CheckBox } from './filter_map_components/index';
 import { Link } from 'react-router-dom';
 
 const ProjectFiltersPanel = () => (
@@ -32,9 +32,9 @@ const ProjectFiltersPanel = () => (
                 <div className="col">
                     <SubHeader Text="Project Type"/>
                     <div className="project-types-container">
-                        <CheckBoxRow Label="Building" ProjectType="building"/>
-                        <CheckBoxRow Label="Vehicle Transportation" ProjectType="vehicle"/>
-                        <CheckBoxRow Label="Infrastructure Transportation" ProjectType="infrastructure"/>
+                        <CheckBox Label="Building" ProjectType="building"/>
+                        <CheckBox Label="Vehicle Transportation" ProjectType="vehicle"/>
+                        <CheckBox Label="Infrastructure Transportation" ProjectType="infrastructure"/>
                     </div>
                 </div>
             </div>
