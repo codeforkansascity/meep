@@ -7,6 +7,8 @@ import { MeepService } from '../../../services/meep_service';
 import { addProjects } from '../../../actions/projects';
 import { Link } from 'react-router-dom';
 import { selectProject } from '../../../actions/project_details';
+import { selectProjectsByFilter } from '../../../selectors/projects';
+import filters from '../../../reducers/filters';
 
 const meep_service = new MeepService();
 
@@ -23,8 +25,11 @@ class ProjectListPanel extends React.Component {
         meep_service.getProjectDetailsById(project_id)
             .then(selectProject)
             .then(this.props.dispatch)
-    }
+    };
+
     render() {
+        console.log(this.props.filters)
+        console.log(this.props.projects && selectProjectsByFilter(this.props.projects, this.props.filters));
         if(Array.isArray(this.props.projects) && this.props.projects.length) {
             return (
                 <div id="project_list_container">
@@ -53,7 +58,8 @@ class ProjectListPanel extends React.Component {
 const mapStateToProps = (state) => {
     return { 
         projects: state.projects[0] || [],
-        selected_project: state.selected_project || {}
+        selected_project: state.selected_project || {},
+        filters: state.filters || {}
     }
 };
 

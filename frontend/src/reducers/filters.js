@@ -2,8 +2,8 @@ const filtersReducerDefaultState = {
   range: 20,
   zipcode: 64106,
   types: [],
-  startDate: null,
-  endDate: null
+  startDate: 2015,
+  endDate: 2018
 };
 
 export default (state = filtersReducerDefaultState, action) => {
