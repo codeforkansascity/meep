@@ -57,7 +57,7 @@ class ProjectListPanel extends React.Component {
 
 const mapStateToProps = (state) => {
     return { 
-        projects: state.projects[0] || [],
+        projects: state.projects[0] ? selectProjectsByFilter(state.projects[0], state.filters) : [],
         selected_project: state.selected_project || {},
         filters: state.filters || {}
     }

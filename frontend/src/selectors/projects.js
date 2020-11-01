@@ -1,4 +1,4 @@
-export const selectProjectsByFilter = (projects, { types, startDate, endDate, range }) => {
+export const selectProjectsByFilter = (projects, { types, startDate, endDate, range, zipcode }) => {
     return projects.filter(project => {
 
         // DateRangeSlider values: startDate and endDate
