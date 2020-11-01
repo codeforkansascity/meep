@@ -8,7 +8,6 @@ import { addProjects } from '../../../actions/projects';
 import { Link } from 'react-router-dom';
 import { selectProject } from '../../../actions/project_details';
 import { selectProjectsByFilter } from '../../../selectors/projects';
-import filters from '../../../reducers/filters';
 
 const meep_service = new MeepService();
 
@@ -28,8 +27,6 @@ class ProjectListPanel extends React.Component {
     };
 
     render() {
-        console.log(this.props.filters)
-        console.log(this.props.projects && selectProjectsByFilter(this.props.projects, this.props.filters));
         if(Array.isArray(this.props.projects) && this.props.projects.length) {
             return (
                 <div id="project_list_container">
