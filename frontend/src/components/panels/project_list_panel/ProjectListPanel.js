@@ -20,13 +20,11 @@ class ProjectListPanel extends React.Component {
             .then(addProjects)
             .then(this.props.dispatch)
     }
-
-    dispatchProjectSummary(project) {
-        meep_service.getProjectDetailsById(project.project_id).then(data => {
-            props.dispatch(selectProject(data));
-            props.history.push("/details");
-        })
-    }
+    dispatchProjectSummary (project_id) {
+        meep_service.getProjectDetailsById(project_id)
+            .then(selectProject)
+            .then(this.props.dispatch)
+    };
 
     render() {
         if (Array.isArray(this.props.projects)) {
@@ -52,11 +50,11 @@ class ProjectListPanel extends React.Component {
     }
 };
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        ...ownProps,
-        projects: state.projects[0] || [],
-        selected_project: () => state(selectProject(ownProps.project_id))
+const mapStateToProps = (state) => {
+    return { 
+        projects: state.projects[0] ? selectProjectsByFilter(state.projects[0], state.filters) : [],
+        selected_project: state.selected_project || {},
+        filters: state.filters || {}
     }
 };
 
