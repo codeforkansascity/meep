@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { setStartDate, setEndDate } from '../../../../actions/filters'
 import Tooltip from 'rc-tooltip';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -50,6 +52,12 @@ class DateRangeSlider extends React.Component {
 	  }, {});
 	}
 
+	handleDateRange = (marks) => {
+		this.props.dispatch(setStartDate(marks[0]));
+		this.props.dispatch(setEndDate(marks[1]));
+
+	}
+
 	render() {
 		return (
 		    <div>
@@ -60,11 +68,12 @@ class DateRangeSlider extends React.Component {
 		    		dots={true}
 		    		dotStyle={dotStyle} 
 		    		defaultValue={this.state.defaultValue}
-		    		handle={handleDateRangeChange}
+					handle={handleDateRangeChange}
+					onChange={this.handleDateRange}
 		    		/>
 		    </div>
 			)
 	}
 }
 
-export default DateRangeSlider;
+export default connect()(DateRangeSlider);

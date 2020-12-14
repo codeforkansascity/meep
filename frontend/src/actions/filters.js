@@ -16,3 +16,15 @@ export const setZipCode = (zipcode) => ({
     type: 'SET_ZIPCODE',
     zipcode: parseInt(zipcode)
 });
+
+// FILTER_BY_START_DATE
+export const setStartDate = (start_date) => ({
+    type: 'FILTER_BY_START_DATE',
+    start_date,
+});
+
+// FILTER_BY_END_DATE
+export const setEndDate = (end_date) => ({
+    type: 'FILTER_BY_END_DATE',
+    end_date,
+});
