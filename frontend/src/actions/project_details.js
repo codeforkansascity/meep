@@ -10,6 +10,6 @@ export const selectProject = (selected_project) => ({
     details: selected_project.details,
     name: selected_project.project_name,
     type: selected_project.project_type,
-    emissions_data: selected_project.emissions_data
+    emissions_data: selected_project.emissions_data,
   }
 });

@@ -66,7 +66,7 @@ class DateRangeSlider extends React.Component {
 		    		max={this.state.maxValue}
 		    		marks={this.marks(this.state.minValue, this.state.maxValue)}
 		    		dots={true}
-		    		dotStyle={dotStyle} 
+		    		dotStyle={dotStyle}
 		    		defaultValue={this.state.defaultValue}
 					handle={handleDateRangeChange}
 					onChange={this.handleDateRange}

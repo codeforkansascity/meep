@@ -32,9 +32,9 @@ const ProjectFiltersPanel = () => (
                 <div className="col">
                     <SubHeader Text="Project Type"/>
                     <div className="project-types-container">
-                        <CheckBox Label="Building" ProjectType="building"/>
-                        <CheckBox Label="Vehicle Transportation" ProjectType="vehicle"/>
-                        <CheckBox Label="Infrastructure Transportation" ProjectType="infrastructure"/>
+                        <CheckBox Label="Building" ProjectType="Building"/>
+                        <CheckBox Label="Vehicle Transportation" ProjectType="Vehicle Transportation"/>
+                        <CheckBox Label="Infrastructure Transportation" ProjectType="Infrastructure Transportation"/>
                     </div>
                 </div>
             </div>

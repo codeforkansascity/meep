@@ -28,7 +28,8 @@ export class MeepService {
     }
 
     async getProjects() {
-        const data = await getAPI(`${config.MEEP_API}/projects`)
+        const data = await getAPI(`${config.MEEP_API}/projects`);
+        console.log(data.projects);
         return data.projects
     }
 

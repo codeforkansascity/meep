@@ -3,7 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Circle } from "react-google-map
 import { connect } from 'react-redux';
 import { MeepService } from '../../../services/meep_service';
 import { selectProject } from '../../../actions/project_details';
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { selectProjectLocations } from '../../../selectors/locations';
 import { GoogleMapsAPIKey } from '../../../../private/google_maps';
 import {v4 as uuid} from 'uuid';
@@ -21,10 +21,11 @@ const mapState = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return { 
+    return {
         ...ownProps,
         locations: state.locations[0] ? selectProjectLocations(state.locations[0], state.filters) : [],
-        map_state: state.map_state
+        map_state: state.map_state,
+        state,
     }
 };
 
@@ -36,20 +37,20 @@ const MyMapComponent = connect(mapStateToProps)(withScriptjs(withGoogleMap((prop
             props.history.push("/details");
         });
     }
-
+    
     return (
         <GoogleMap
             key={uuid()}
             defaultZoom={props.map_state.zoom}
             defaultCenter={props.map_state.center}>
-            {props.locations.map(location => {
+            {selectProjectLocations(props.state.locations[0], props.state.filters).map(location => {
                 return <Circle
                             key={location.key}
                             onClick={()=>dispatchProjectSummary(location)}
                             strokeWeight={mapState.marker.strokeWeight}
                             options={{
-                                fillColor: mapState.marker.fillColor, 
-                                fillOpacity: mapState.marker.fillOpacity, 
+                                fillColor: mapState.marker.fillColor,
+                                fillOpacity: mapState.marker.fillOpacity,
                                 strokeColor: mapState.marker.strokeColor
                             }}
                             center={location.center}

@@ -6,8 +6,8 @@ export const setRangeFilter = (range = 25) => ({
 
 // ADD_TYPE_FILTER
 // REMOVE_TYPE_FILTER
-export const setTypeFilter = (project_type = null) => ({
-    type: project_type ? 'ADD_TYPE_FILTER' : 'REMOVE_TYPE_FILTER',
+export const setTypeFilter = ({ type, project_type }) => ({
+    type: type ? 'ADD_TYPE_FILTER' : 'REMOVE_TYPE_FILTER',
     project_type: project_type
 });
 
