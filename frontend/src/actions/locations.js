@@ -11,7 +11,9 @@ export const addLocations = (locations) => ({
         type: (Array.isArray(location.project_types)) ? location.project_types[0] : [],
         center: location.center,
         gge_reduced: location.gge_reduced,
-        ghg_reduced: location.ghg_reduced
+        ghg_reduced: location.ghg_reduced,
+        startDate: location.year,
+        endDate: 2018
       }
   })
 });
