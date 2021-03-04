@@ -16,7 +16,7 @@
     "@types/googlemaps": "^3.39.11",
     "@types/markerclustererplus": "^2.1.33",
     "autoprefixer": "^9.8.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.1",
     "core-js": "^3.6.5",
     "css-loader": "^4.2.0",

@@ -1,8 +1,8 @@
 const filtersReducerDefaultState = {
   range: 20,
   zipcode: 64106,
-  types: [],
-  startDate: 2015,
+  project_types: ["Building", "Vehicle Transportation", "Infrastructure Transportation"],
+  startDate: 2013,
   endDate: 2018
 };
 
@@ -33,7 +33,7 @@ export default (state = filtersReducerDefaultState, action) => {
         ...state,
         endDate: action.end_date
       };
-    case 'SET_ZIPCODE': 
+    case 'SET_ZIPCODE':
       return {
         ...state,
         zipcode: action.zipcode

@@ -1,7 +1,8 @@
 import withinProximity from "./promixity_selector";
-const proximity_center = {latitude: 39.057, longitude: -94.594};
+const proximity_center = { latitude: 39.057, longitude: -94.594 };
 
-export const selectProjectLocations = (locations, { types, startDate, endDate, range }) => {
+export const selectProjectLocations = (locations, { project_types, startDate, endDate, range }) => {
+
     return locations.filter((location) => {
 
       //DateRangeSlider value
@@ -9,8 +10,7 @@ export const selectProjectLocations = (locations, { types, startDate, endDate, r
       const endDateMatch = typeof endDate !== 'number' || location.endDate <= endDate;
       
       //Project type value
-      const locationTypeMatch = !types.length || types.includes(location.project_types[0]);
-
+      const locationTypeMatch = !project_types.length || project_types.includes(location.type);
       //Proximity value
       const withinProximityMatch = typeof range !== 'number' || withinProximity(proximity_center, location.center, range);
   
